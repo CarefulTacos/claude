@@ -1,0 +1,35 @@
+name: Deploy to Cloudflare Pages
+
+# Deploy the static site in "Final Version/" to the existing Cloudflare Pages
+# project (iceland-2026) on every push. Keeps the same URL:
+# https://iceland-2026-c5w.pages.dev
+#
+# One-time setup: add a repo secret named CLOUDFLARE_API_TOKEN
+# (Cloudflare dashboard → My Profile → API Tokens → "Edit Cloudflare Workers").
+# The account ID below is not secret.
+
+on:
+  push:
+    branches:
+      - main
+      - claude/iceland-2026-handoff-aqxr58
+    paths:
+      - 'Final Version/**'
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 123ab630f5cbd404e46c60311212541c
+          command: pages deploy "Final Version" --project-name=iceland-2026 --branch=main

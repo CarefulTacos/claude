@@ -6,6 +6,9 @@ Repo นี้เก็บไฟล์ทริปทั้งหมดไว้
 
 **https://iceland-2026-c5w.pages.dev** — แผน + รายละเอียดทุกจุด + แผนที่เส้นทาง (Cloudflare Pages)
 
+> ⚙️ **Auto-deploy:** push โค้ดที่แก้ `Final Version/` → GitHub Actions deploy ขึ้น Cloudflare เองอัตโนมัติ (คง URL เดิม)
+> ตั้งครั้งเดียว: เพิ่ม repo secret `CLOUDFLARE_API_TOKEN` (ดู `.github/workflows/deploy.yml`)
+
 ## 📂 โครงสร้าง
 
 | ไฟล์ / โฟลเดอร์ | คืออะไร |
