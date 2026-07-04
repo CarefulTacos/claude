@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ไอซ์แลนด์ 2026 · แผนที่เส้นทางขับรถรายวัน</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+  :root{--ink:#1c2230;--muted:#5b6472;--line:#e4e7ee;--bg:#f5f7fb;--blue:#2f6fb0;--blueDk:#1d4e82;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',Arial,'Noto Sans Thai',sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+  header{background:linear-gradient(135deg,#1d4e82,#2f6fb0);color:#fff;padding:22px 16px 16px;text-align:center}
+  header h1{margin:0 0 4px;font-size:21px;font-weight:800}
+  header p{margin:0;font-size:13px;opacity:.95}
+  .topnav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+  .topnav a{font-size:13px;color:var(--blue);text-decoration:none;border:1px solid var(--line);background:#fff;padding:6px 12px;border-radius:999px}
+  main{max-width:1150px;margin:0 auto;padding:12px 14px 60px}
+  #map{height:60vh;min-height:420px;width:100%;border:1px solid var(--line);border-radius:12px;z-index:1}
+  .maptip{font-size:12px;color:var(--muted);text-align:center;margin:6px 0 14px}
+  .days{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+  .dcard{background:#fff;border:1px solid var(--line);border-left-width:6px;border-radius:10px;padding:11px 13px;cursor:pointer;transition:transform .1s,box-shadow .1s}
+  .dcard:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(20,30,60,.1)}
+  .dcard h3{margin:0 0 3px;font-size:15px}
+  .dcard .meta{font-size:12px;color:var(--muted);margin-bottom:5px}
+  .dcard .seq{font-size:12.7px;color:#39414f}
+  .badge{display:inline-block;font-size:11px;background:#eef3f9;color:var(--blueDk);border-radius:999px;padding:2px 8px;margin-right:4px}
+  .leaflet-popup-content{font-family:'Segoe UI',Arial,'Noto Sans Thai',sans-serif;font-size:13px}
+  .navbtn{display:inline-block;margin-top:5px;font-size:11.5px;color:#fff;background:#1d9e75;padding:3px 9px;border-radius:999px;text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+  <h1>🗺️ แผนที่เส้นทางขับรถรายวัน</h1>
+  <p>เปิดดูตอนขับที่ไอซ์แลนด์ · แตะจุดเพื่อดูชื่อ + ปุ่มนำทาง (ต้องมีเน็ต)</p>
+</header>
+<main>
+  <div class="topnav">
+    <a href="index.html">🗓️ แผน + รายละเอียด (หน้าแรก)</a>
+  </div>
+
+  <div id="map"></div>
+  <div class="maptip">แตะการ์ดวันด้านล่างเพื่อซูมไปเส้นทางวันนั้น · เส้นแต่ละสี = แต่ละวัน</div>
+
+  <div class="days" id="dayCards"></div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const P = {
+  KEF:[63.985,-22.605], RVK:[64.1417,-21.9266], THING:[64.2558,-21.1290],
+  GEYSIR:[64.3104,-20.3024], GULL:[64.3271,-20.1199], KERID:[64.0413,-20.8850],
+  HELLA:[63.8333,-20.3900], SELJ:[63.6156,-19.9886], SKOGA:[63.5321,-19.5114],
+  PLANE:[63.4913,-19.3632], SOLJ:[63.5300,-19.3700], DYRH:[63.4006,-19.1283],
+  REYN:[63.4064,-19.0448], VIK:[63.4186,-19.0060], FJAD:[63.7714,-18.1720],
+  HOF:[63.9200,-16.7000], JOKUL:[64.0784,-16.2306], DIAM:[64.0421,-16.1756],
+  SKAFT:[64.0159,-16.9666], SELFOSS:[63.9333,-20.9970], BRIDGE:[63.8683,-22.6760],
+  GUNNU:[63.8186,-22.6836], REYKV:[63.8118,-22.7080], BRIM:[63.8300,-22.6660],
+  KEFTOWN:[64.0049,-22.5657], BLUE:[63.8804,-22.4495],
+  GRIMS:[64.0500,-20.8700], HVOLS:[63.7533,-20.2236],
+  BORGARNES:[64.5390,-21.9210], GERDU:[64.7793,-22.3535], YTRI:[64.8030,-23.0770],
+  GRUND:[64.9226,-23.2596], KIRKJU:[64.9270,-23.3110],
+  SAXHOLL:[64.8280,-23.9330], DJUPA:[64.7522,-23.8949], LOND:[64.7360,-23.8080],
+  HELLNAR:[64.7500,-23.6430], ARNAR:[64.7680,-23.6210], BUDIR:[64.8220,-23.3850]
+};
+function pt(key,name,th){return {ll:P[key],name,th};}
+
+const DAYS = [
+  {n:1,date:"ศ. 24 ก.ค.",color:"#e74c3c",title:"ถึง KEF → เรคยาวิก",km:"~50 กม.",time:"~45 นาที",stopsTxt:"เที่ยวเมือง",
+   pts:[pt("KEF","สนามบิน Keflavík","KEF"),pt("RVK","เรคยาวิก","Reykjavík")]},
+  {n:2,date:"ส. 25 ก.ค.",color:"#e67e22",title:"Golden Circle → Grímsnes",km:"~200 กม.",time:"~3 ชม.ขับ",stopsTxt:"4 จุด",
+   pts:[pt("RVK","เรคยาวิก","Reykjavík"),pt("THING","Þingvellir","ธิงเวลลีร์"),pt("GEYSIR","Geysir/Strokkur","เกย์ซีร์"),pt("GULL","Gullfoss","กูลล์ฟอสส์"),pt("KERID","Kerið (เสริม)","เคริด"),pt("GRIMS","Þúfukot · Grímsnes (นอน ✅)","กรีมส์เนส")]},
+  {n:3,date:"อา. 26 ก.ค.",color:"#f1c40f",title:"น้ำตกใต้ + ซากเครื่องบิน",km:"~230 กม. (ไป-กลับ)",time:"~3.5 ชม.",stopsTxt:"3–4 จุด",
+   pts:[pt("GRIMS","Grímsnes","กรีมส์เนส"),pt("SELJ","Seljalandsfoss","เซลยาลันส์ฟอสส์"),pt("SKOGA","Skógafoss","สโกกาฟอสส์"),pt("PLANE","ซากเครื่องบิน DC-3","โซลเฮมาซันดูร์"),pt("SOLJ","Sólheimajökull (เสริม)","โซลเฮมาเยอคุตล์"),pt("GRIMS","Grímsnes (นอน ✅)","กรีมส์เนส")]},
+  {n:4,date:"จ. 27 ก.ค.",color:"#2ecc71",title:"Vík + พัฟฟิน → Hvolsvöllur",km:"~340 กม.",time:"~4.5 ชม.",stopsTxt:"4 จุด",
+   pts:[pt("GRIMS","Grímsnes","กรีมส์เนส"),pt("DYRH","Dyrhólaey 🐧","ดีร์โฮลาเอย์"),pt("REYN","Reynisfjara","เรย์นิสฟยารา"),pt("VIK","Vík","วิก"),pt("FJAD","Fjaðrárgljúfur","ฟยาดราร์กลยูวูร์"),pt("HVOLS","Hvolsvöllur (นอน ✅)","ควอลส์โวลลูร์")]},
+  {n:5,date:"อ. 28 ก.ค.",color:"#16a085",title:"⭐ Jökulsárlón + Skaftafell",km:"~530 กม. (ไป-กลับ)",time:"~6.5 ชม. ออกเช้า!",stopsTxt:"3 จุด",
+   pts:[pt("HVOLS","Hvolsvöllur","ควอลส์โวลลูร์"),pt("SKAFT","Skaftafell","สกาฟตาเฟตล์"),pt("JOKUL","Jökulsárlón","เยอคุลซาร์ลอน"),pt("DIAM","Diamond Beach","หาดเพชร"),pt("HVOLS","Hvolsvöllur (นอน ✅)","ควอลส์โวลลูร์")]},
+  {n:6,date:"พ. 29 ก.ค.",color:"#2980b9",title:"สู่ Snæfellsnes → Kirkjufell",km:"~330 กม.",time:"~4.5 ชม.",stopsTxt:"4 จุด",
+   pts:[pt("HVOLS","Hvolsvöllur","ควอลส์โวลลูร์"),pt("BORGARNES","Borgarnes (เที่ยง)","บอร์กาเนส"),pt("GERDU","Gerðuberg","แกร์ดูแบร์ก"),pt("YTRI","Ytri Tunga 🦭","อีตรี ทุงกา"),pt("KIRKJU","Kirkjufell เย็น ⭐","คีร์คยูเฟตล์"),pt("GRUND","Saból · Grundarfjörður (นอน ✅)","กรุนดาร์ฟยอร์ดูร์")]},
+  {n:7,date:"พฤ. 30 ก.ค.",color:"#8e44ad",title:"วน Snæfellsjökull → Keflavík",km:"~360 กม.",time:"~4.5 ชม.",stopsTxt:"6 จุด",
+   pts:[pt("GRUND","Grundarfjörður","กรุนดาร์ฟยอร์ดูร์"),pt("SAXHOLL","Saxhóll Crater","ซักซ์โฮตล์"),pt("DJUPA","Djúpalónssandur ⭐","ดยูปาลอนส์ซันดูร์"),pt("LOND","Lóndrangar","โลนดรังการ์"),pt("HELLNAR","Hellnar (เที่ยง)","เฮตล์นาร์"),pt("ARNAR","Arnarstapi cliff walk ⭐","อาร์นาร์สตาปี"),pt("BUDIR","Búðakirkja","บูดาเคียคยา"),pt("KEFTOWN","Keflavík (นอน ⏳)","เคฟลาวิก")]},
+  {n:8,date:"ศ. 31 ก.ค.",color:"#e91e63",title:"Reykjanes + Blue Lagoon",km:"~90 กม.",time:"~1.5 ชม.",stopsTxt:"6 จุด",
+   pts:[pt("KEFTOWN","Keflavík","เคฟลาวิก"),pt("BRIDGE","สะพานเชื่อมทวีป","มิดลีนา"),pt("GUNNU","Gunnuhver","กุนนูห์เวร์"),pt("REYKV","ประภาคาร Reykjanes","เรคยาเนสวีตี"),pt("BRIM","Brimketill","บริมเคทิล"),pt("BLUE","Blue Lagoon 20:00","บลูลากูน"),pt("KEFTOWN","Keflavík (นอน)","เคฟลาวิก")]}
+];
+
+const map = L.map('map',{scrollWheelZoom:true}).setView([64.05,-19.6],7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  maxZoom:17, attribution:'© OpenStreetMap'}).addTo(map);
+
+const dayLayers = {};
+const allBounds = [];
+DAYS.forEach(d=>{
+  const grp = L.layerGroup().addTo(map);
+  const latlngs = d.pts.map(p=>p.ll);
+  L.polyline(latlngs,{color:d.color,weight:4,opacity:.85}).addTo(grp);
+  d.pts.forEach((p,i)=>{
+    const nav=`https://www.google.com/maps/dir/?api=1&destination=${p.ll[0]},${p.ll[1]}`;
+    const mk=L.circleMarker(p.ll,{radius:7,color:'#fff',weight:2,fillColor:d.color,fillOpacity:1}).addTo(grp);
+    mk.bindPopup(`<b>วันที่ ${d.n} · จุดที่ ${i+1}</b><br><b>${p.name}</b><br><span style="color:#2f6fb0">${p.th}</span><br><a class="navbtn" href="${nav}" target="_blank">🧭 นำทาง Google Maps</a>`);
+    allBounds.push(p.ll);
+  });
+  dayLayers[d.n]=grp;
+});
+map.fitBounds(allBounds,{padding:[30,30]});
+
+// day cards
+const cards = document.getElementById('dayCards');
+DAYS.forEach(d=>{
+  const seq = d.pts.map(p=>p.name).join(' → ');
+  const el=document.createElement('div');
+  el.className='dcard'; el.style.borderLeftColor=d.color;
+  el.innerHTML=`<h3>วันที่ ${d.n} · ${d.date}</h3>
+    <div class="meta"><span class="badge" style="background:${d.color}22;color:${d.color}">${d.title}</span></div>
+    <div class="meta">🚗 ${d.km} · ⏱️ ${d.time} · 📍 ${d.stopsTxt}</div>
+    <div class="seq">${seq}</div>`;
+  el.onclick=()=>{ map.fitBounds(d.pts.map(p=>p.ll),{padding:[40,40]}); window.scrollTo({top:0,behavior:'smooth'}); };
+  cards.appendChild(el);
+});
+</script>
+</body>
+</html>
