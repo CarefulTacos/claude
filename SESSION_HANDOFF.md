@@ -20,9 +20,9 @@
 | 2–3 | ส–อา 25–26 | Grímsnes/Golden Circle · Þúfukot (Sigurbjörg) 🛁 | ✅ HM5S2Z2FDN |
 | 4–5 | จ–อ 27–28 | Hvolsvöllur · Hamar–Puffin 1 (Valdimar) | ✅ HM9RAS2PJM |
 | 6 | พ 29 | Grundarfjörður · Hálsaból 2 Kirkjufell Cottage (Radim) 🛁 | ✅ HMCJN4R9S3 |
-| 7–8 | พฤ–ศ 30–31 | Keflavík (Innri-Njarðvík) · Modern 2BR (Tómas) | ⏳ **ยังไม่กดจอง!** ลิงก์: airbnb.com/rooms/1663776698233160811 |
+| 7–8 | พฤ–ศ 30–31 | Keflavík (Skólavegur) · Rokkheimur Studio (Júlíus) 🔑lockbox | ✅ HMYW4SSPMF |
 
-- 💰 รวมที่จองแล้ว ฿79,605.16 (6 คืน) · **ยอดค้างตัด ฿11,262.14 วันที่ 10 ก.ค.** (Þúfukot งวด 2)
+- 💰 รวมทั้งทริป ฿100,739.28 (8 คืน จองครบแล้ว) · **ยอดจะตัด: ฿11,262.14 (10 ก.ค. · Þúfukot งวด 2) + ฿21,134.12 (17 ก.ค. · Keflavík)**
 - 📝 งานค้าง: ทักโฮสต์ Haraldur (early check-in 24 ก.ค.) + Sigurbjörg (แจ้งเวลาถึง — ตอบช้า 1 วัน)
 
 ## 3) เว็บไซต์ — ✅ ออนไลน์แล้ว
@@ -62,7 +62,7 @@ Iceland 2026/
 
 ## 7) งานที่เหลือ
 
-- [ ] **กดจองที่พัก Keflavík 30 ก.ค.–1 ส.ค.** (ลิงก์ใส่วันที่แล้วอยู่บนเว็บ ส่วนที่พัก #5) — เช็กวันที่ก่อนกดเสมอ!
+- [x] ~~กดจองที่พัก Keflavík~~ ✅ จองแล้ว: Rokkheimur Studio (HMYW4SSPMF) — จองครบ 8 คืน
 - [ ] ทักโฮสต์ Haraldur + Sigurbjörg (Claude ร่างให้ได้ ส่งเมื่ออนุมัติ)
 - [ ] (เสริม) เวอร์ชันภาษาอังกฤษสำหรับวีซ่า · ตารางงบทั้งทริป
 
