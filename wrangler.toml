@@ -1,0 +1,6 @@
+# Cloudflare Pages config for project "iceland-2026".
+# The GitHub Actions deploy job appends the [[kv_namespaces]] binding
+# (with the namespace id it creates/looks up) before deploying.
+name = "iceland-2026"
+pages_build_output_dir = "Final Version"
+compatibility_date = "2024-11-01"
