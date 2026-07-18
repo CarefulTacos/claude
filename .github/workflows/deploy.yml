@@ -19,6 +19,7 @@ on:
       - claude/iceland-2026-handoff-aqxr58
     paths:
       - 'Final Version/**'
+      - 'functions/**'
       - 'wrangler.toml'
   workflow_dispatch: {}
 
