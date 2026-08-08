@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ไอซ์แลนด์ 2026 · แผนเที่ยว + ที่พัก (แชร์ได้)</title>
+<style>
+  /* ===== THEME: Aurora over Fjord — ไอซ์แลนด์ 2026 ===== */
+  :root{
+    --ink:#15202e; --muted:#5a6675; --line:#dbe6ef; --card:#ffffff; --bg:#eef4f9;
+    --fjord:#0e4258; --fjordDk:#0a2e44; --glacier:#2c7da0; --glacierLt:#4a9fc4;
+    --teal:#12a594; --aurora:#2fbf87; --amber:#b45309; --purple:#7c6fd6;
+    --blue:#2c7da0; --blueDk:#0e4258; --green:#0d7a63;
+    --shadow:0 6px 22px rgba(14,66,88,.10);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,'Noto Sans Thai',sans-serif;
+       color:var(--ink);line-height:1.62;-webkit-font-smoothing:antialiased;
+       background:linear-gradient(180deg,#e6eff6 0%,#eef4f9 320px) no-repeat,#eef4f9}
+  .wrap{max-width:900px;margin:0 auto;padding:0 15px 80px}
+  /* ---- HEADER: aurora sky over deep fjord ---- */
+  header{position:relative;color:#eaf6ff;padding:52px 20px 58px;text-align:center;overflow:hidden;
+    background:
+      radial-gradient(130% 95% at 12% -20%,rgba(47,191,135,.55),transparent 55%),
+      radial-gradient(120% 85% at 88% -12%,rgba(18,165,148,.50),transparent 52%),
+      radial-gradient(120% 135% at 50% 135%,rgba(124,111,214,.42),transparent 60%),
+      linear-gradient(165deg,#061826 0%,#0a2e44 48%,#0e4258 100%)}
+  header h1{position:relative;margin:0 0 10px;font-size:27px;font-weight:800;letter-spacing:.3px;
+    text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  header p{position:relative;margin:3px 0;font-size:14px;opacity:.94}
+  .topnav{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:-28px 0 20px;position:relative;z-index:3}
+  .topnav a{font-size:13px;color:var(--fjord);text-decoration:none;border:1px solid rgba(255,255,255,.7);
+    background:rgba(255,255,255,.94);padding:8px 15px;border-radius:999px;font-weight:600;
+    box-shadow:var(--shadow);backdrop-filter:blur(6px);transition:transform .12s,box-shadow .12s}
+  .topnav a:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(14,66,88,.18)}
+  /* ---- callouts ---- */
+  .rate{background:linear-gradient(135deg,#fff6e9,#fdeede);border:1px solid #f0cf9a;border-radius:14px;
+    padding:13px 17px;margin:18px 0;font-size:13.3px;box-shadow:var(--shadow)}
+  .rate b{color:var(--amber)}
+  .ok{background:linear-gradient(135deg,#e9f7f0,#e0f3ee);border:1px solid #9fded0;border-radius:14px;
+    padding:15px 17px;margin:18px 0;font-size:13.5px;box-shadow:var(--shadow)}
+  .ok h3{margin:0 0 7px;color:var(--green);font-size:15px}
+  .ok ul{margin:4px 0 0;padding-left:18px}
+  /* ---- table ---- */
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:16px;
+    overflow:hidden;box-shadow:var(--shadow);font-size:13.5px;margin:14px 0;border:1px solid var(--line)}
+  th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:linear-gradient(180deg,#eaf3fa,#e3eef7);font-weight:700;color:var(--fjord);letter-spacing:.2px}
+  tr:last-child td{border-bottom:none}
+  table tr:hover td{background:#f5fafd}
+  .dt{font-weight:800;color:var(--fjord);white-space:nowrap}
+  /* ---- day header bar ---- */
+  .daybar{position:relative;color:#eaf6ff;border-radius:18px;padding:17px 20px;margin:34px 0 12px;overflow:hidden;
+    background:radial-gradient(120% 140% at 90% -30%,rgba(47,191,135,.35),transparent 55%),
+      linear-gradient(135deg,#0a2e44,#12557a);box-shadow:0 10px 28px rgba(10,46,68,.28)}
+  .daybar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+    background:linear-gradient(180deg,#2fbf87,#12a594,#7c6fd6)}
+  .daybar h2{margin:0;font-size:19px;font-weight:800;letter-spacing:.2px}
+  .daybar .sub{font-size:13px;opacity:.9;margin-top:4px}
+  .daybar .tags{margin-top:10px;display:flex;gap:7px;flex-wrap:wrap}
+  .daybar .tag{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.14);
+    padding:4px 11px;border-radius:999px;font-size:12px}
+  /* ---- stop card ---- */
+  .stop{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:12px;margin:12px 0;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+  .stop:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(14,66,88,.14)}
+  .thumb{position:relative;flex:0 0 132px;width:132px;height:112px;border-radius:12px;overflow:hidden;
+    background:#dfe9f2;display:flex;align-items:center;justify-content:center}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+  .stop:hover .thumb img{transform:scale(1.05)}
+  .thumb .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .thumb.ic{flex-direction:column;color:#fff;text-align:center;padding:6px}
+  .thumb.ic .em{font-size:40px;line-height:1}
+  .thumb.ic small{font-size:10.5px;font-weight:600;margin-top:5px;opacity:.95}
+  .g1{background:linear-gradient(135deg,#2c7da0,#4a9fc4)}
+  .g2{background:linear-gradient(135deg,#0a2e44,#12557a)}
+  .g3{background:linear-gradient(135deg,#12a594,#2fbf87)}
+  .g4{background:linear-gradient(135deg,#6a5acd,#9b8ce0)}
+  .g5{background:linear-gradient(135deg,#b45309,#e0954a)}
+  .g6{background:linear-gradient(135deg,#334e68,#5a7896)}
+  .info{flex:1;min-width:0}
+  .info h4{margin:0 0 7px;font-size:15.5px;color:#16202e}
+  .rd{color:var(--glacier);font-weight:600;font-size:12.5px}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .b{font-size:11.5px;padding:4px 10px;border-radius:999px;font-weight:600}
+  .b.time{background:#e6f2fa;color:#0e4258}
+  .b.cost{background:#fbeadd;color:#b45309}
+  .b.free{background:#e2f5ec;color:#0d7a63}
+  .b.opt{background:#efecfb;color:#6a5acd}
+  .info p{margin:0 0 9px;font-size:13.3px;color:#3a4453}
+  .nav{display:inline-block;font-size:12px;font-weight:700;color:#fff;
+    background:linear-gradient(135deg,#12a594,#2fbf87);padding:6px 14px;border-radius:999px;text-decoration:none;
+    box-shadow:0 4px 12px rgba(18,165,148,.32);transition:transform .12s,box-shadow .12s}
+  .nav:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(18,165,148,.42)}
+  .sleep{background:linear-gradient(135deg,#e9f7f0,#e0f3ee);border:1px solid #a7e0d1;border-radius:12px;
+    padding:9px 14px;margin:8px 0 2px;font-size:13.3px;color:#0d7a63;font-weight:600}
+  /* ---- section + accommodations ---- */
+  h2.sec{font-size:21px;margin:40px 0 14px;padding-bottom:10px;position:relative;color:#16202e}
+  h2.sec::after{content:"";position:absolute;left:0;bottom:0;width:74px;height:3px;border-radius:3px;
+    background:linear-gradient(90deg,#2fbf87,#12a594,#7c6fd6)}
+  .acc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;
+    margin-bottom:13px;box-shadow:var(--shadow)}
+  .acc .accphoto{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin:9px 0 5px;display:block}
+  .acc h4{margin:0 0 5px;font-size:15.5px;color:var(--fjord)}
+  .acc .price{font-size:13px;color:var(--teal);font-weight:700}
+  .acc ul{margin:8px 0 0;padding-left:18px;font-size:13.2px;color:var(--muted)}
+  .foot{text-align:center;color:var(--muted);font-size:12.3px;margin-top:28px}
+  @media(max-width:520px){.stop{flex-direction:column}.thumb{width:100%;flex-basis:auto;height:200px}
+    header{padding:42px 16px 50px}header h1{font-size:23px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🇮🇸 ทริปไอซ์แลนด์ 2026 — แผน + รายละเอียดทุกจุด</h1>
+  <p>Golden Circle + ชายฝั่งใต้ + Jökulsárlón + Snæfellsnes · 24 ก.ค.–1 ส.ค. 2026 · 8 คืน · 3 คน</p>
+  <p>เปิดออฟไลน์ได้ · รูป · ราคาบาท · เวลาที่ควรแวะ · ปุ่มนำทาง</p>
+</header>
+<div style="max-width:900px;margin:14px auto 0;padding:0 15px"><div class="rate" style="background:linear-gradient(135deg,#e9f7f0,#e0f3ee);border-color:#a7e0d1">📋 <b>แผนเที่ยวสำหรับแชร์</b> — คัดลอกไอเดียแผน 8 วัน + ที่พักไปวางแผนต่อได้เลย <span style="opacity:.75">(ตัดข้อมูลส่วนตัวออกแล้ว)</span></div></div>
+<div class="wrap">
+
+  <div class="topnav">
+    <a href="share-map.html">🗺️ แผนที่เส้นทางรายวัน</a>
+    <a href="#acc-sec">🏠 ที่พักทั้งหมด</a>
+  </div>
+
+  <div class="rate">
+    💱 <b>เรทที่ใช้: 100 ISK ≈ 26 บาท</b> (มิ.ย. 2026, ผันผวนได้) · 🎟️ จุดธรรมชาติส่วนใหญ่ <b>เข้าฟรี</b> เสียหลักๆ คือค่าจอด/สปา/ล่องเรือ · ราคาต่อผู้ใหญ่ ควรเช็กเว็บทางการอีกครั้ง
+  </div>
+
+  <div class="ok">
+    <h3>✅ ยืนยันจากใบจอง (วันที่ถูกต้อง)</h3>
+    <ul>
+      <li>✈️ ถึง KEF <b>07:50 · ศุกร์ 24 ก.ค.</b> · บินกลับ <b>08:40 · เสาร์ 1 ส.ค. 2026</b></li>
+      <li>🚗 Toyota RAV4 · รับ <b>24 ก.ค. 09:00</b> · คืน <b>1 ส.ค. 07:00</b> ที่ KEF · ⚠️ คืนรถแล้วรีบเข้าเช็กอิน (เหลือ ~1 ชม. 40 นาที)</li>
+    </ul>
+  </div>
+
+  <!-- ================= FLIGHTS ================= -->
+  <h2 class="sec">✈️ เที่ยวบิน — Finnair (ผ่านเฮลซิงกิ)</h2>
+  <div class="rate">🎫 <b>Finnair</b> ผ่านเฮลซิงกิ · 3 ผู้โดยสาร · ชั้นประหยัด · โหลดใต้ท้อง 23 กก./คน + ถือขึ้นเครื่อง (ถือ+ของส่วนตัวรวม ≤ 8 กก., 55×40×23 ซม.)</div>
+
+  <div class="acc">
+    <h4>🛫 ขาไป · กรุงเทพฯ → เรคยาวิก</h4>
+    <table>
+      <tr><th>เที่ยวบิน</th><th>ออกเดินทาง</th><th>ถึง</th></tr>
+      <tr><td class="dt">Finnair AY142<br><span class="rd">A350-900</span></td><td>🇹🇭 <b>BKK 07:05</b><br>พฤ 23 ก.ค.</td><td>🇫🇮 <b>HEL 15:25</b><br>พฤ 23 ก.ค.</td></tr>
+      <tr><td colspan="3" style="background:#fff6e9;color:#8a5a12;font-size:12.5px">⏳ ต่อเครื่องที่เฮลซิงกิ <b>15 ชม. 45 นาที</b> — ค้างคืน เที่ยวเมือง/พักได้</td></tr>
+      <tr><td class="dt">Finnair AY991<br><span class="rd">737-800</span></td><td>🇫🇮 <b>HEL 07:10</b><br>ศ 24 ก.ค.</td><td>🇮🇸 <b>KEF 07:50</b><br>ศ 24 ก.ค.</td></tr>
+    </table>
+    <div class="sleep">🚗 ลงเครื่อง 07:50 → รับรถ Hertz 09:00 ที่ KEF พอดี → เริ่มทริป!</div>
+  </div>
+
+  <div class="acc">
+    <h4>🛬 ขากลับ · เรคยาวิก → กรุงเทพฯ</h4>
+    <table>
+      <tr><th>เที่ยวบิน</th><th>ออกเดินทาง</th><th>ถึง</th></tr>
+      <tr><td class="dt">Finnair AY992<br><span class="rd">737-800</span></td><td>🇮🇸 <b>KEF 08:40</b><br>ส 1 ส.ค.</td><td>🇫🇮 <b>HEL 15:05</b><br>ส 1 ส.ค.</td></tr>
+      <tr><td colspan="3" style="background:#fff6e9;color:#8a5a12;font-size:12.5px">⏳ ต่อเครื่องที่เฮลซิงกิ <b>23 ชม. 10 นาที</b> — ค้างคืน เที่ยวเฮลซิงกิได้เกือบเต็มวัน 🇫🇮</td></tr>
+      <tr><td class="dt">Finnair AY141<br><span class="rd">A350-900</span></td><td>🇫🇮 <b>HEL 14:15</b><br>อา 2 ส.ค.</td><td>🇹🇭 <b>BKK 05:30</b><br>จ 3 ส.ค.</td></tr>
+    </table>
+    <div class="sleep">🚗 คืนรถ Hertz 07:00 → เช็กอินบิน 08:40 · ⚠️ ค้างเฮลซิงกิ 1 คืน (2 ส.ค.) ถึงไทยเช้า 3 ส.ค.</div>
+  </div>
+
+  <table>
+    <tr><th>คืน</th><th>วันที่</th><th>นอนที่</th></tr>
+    <tr><td>1</td><td class="dt">ศ. 24 ก.ค.</td><td>เรคยาวิก</td></tr>
+    <tr><td>2–3</td><td class="dt">ส.–อา. 25–26 ก.ค.</td><td>Golden Circle (Grímsnes) ✅จองแล้ว</td></tr>
+    <tr><td>4–5</td><td class="dt">จ.–อ. 27–28 ก.ค.</td><td>Hvolsvöllur ✅จองแล้ว</td></tr>
+    <tr><td>6</td><td class="dt">พ. 29 ก.ค.</td><td>Grundarfjörður (Kirkjufell) ✅จองแล้ว</td></tr>
+    <tr><td>7–8</td><td class="dt">พฤ.–ศ. 30–31 ก.ค.</td><td>Keflavík · Rokkheimur Studio ✅จองแล้ว</td></tr>
+    <tr><td>—</td><td class="dt">ส. 1 ส.ค.</td><td>✈️ คืนรถ 07:00 · บิน 08:40</td></tr>
+  </table>
+
+  <!-- ================= DAY 1 ================= -->
+  <div class="daybar">
+    <h2>วันที่ 1 · ศุกร์ 24 ก.ค. — เรคยาวิก (Reykjavík)</h2>
+    <div class="sub">เครื่องลง 07:50 → รับรถ 09:00 → เข้าเมือง · วันแรกเอาเบาๆ</div>
+    <div class="tags"><span class="tag">🚗 KEF→เมือง ~45 นาที</span><span class="tag">🛏️ นอนเรคยาวิก</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#cfe3f5"/><rect y="88" width="132" height="24" fill="#8caa82"/><polygon points="66,12 75,40 57,40" fill="#fff"/><rect x="57" y="40" width="18" height="48" fill="#fff"/><polygon points="57,52 48,62 48,88 57,88" fill="#edf1f5"/><polygon points="75,52 84,62 84,88 75,88" fill="#edf1f5"/><polygon points="48,64 40,74 40,88 48,88" fill="#dbe3ea"/><polygon points="84,64 92,74 92,88 84,88" fill="#dbe3ea"/><rect x="63" y="68" width="6" height="20" fill="#b7c2cd"/><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Hallgrímskirkja</text></svg><img class="ph" src="images/hallgrimskirkja.jpg" alt="Hallgrímskirkja" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Hallgrímskirkja <span class="rd">(ฮัตล์กรีมสเคียคยา)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 นาที</span><span class="b free">💰 เข้าฟรี</span><span class="b cost">🔭 หอคอย ~365 บาท</span></div>
+      <p>โบสถ์สูงสัญลักษณ์เมือง ทรงเสาหินบะซอลต์ ขึ้นลิฟต์ไปหอคอยชมวิวหลังคาสีสด + อ่าวเมือง 360°</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1417,-21.9266" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_sunvoyager.jpg" alt="Sun Voyager"></div>
+    <div class="info">
+      <h4>Sun Voyager <span class="rd">(ซัน วอยาเจอร์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 15–20 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>ประติมากรรมเรือไวกิ้งสเตนเลสริมทะเล จุดถ่ายรูปคลาสสิก วิวภูเขา Esja เป็นฉากหลัง สวยช่วงแสงเย็น</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1476,-21.9224" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_harpa.jpg" alt="Harpa"></div>
+    <div class="info">
+      <h4>Harpa Concert Hall <span class="rd">(ฮาร์ปา)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 นาที</span><span class="b free">💰 เข้าโถงฟรี</span></div>
+      <p>หอแสดงคอนเสิร์ตผนังกระจกรังผึ้งหลากสี เดินชมโถงด้านในได้ฟรี ติดท่าเรือเก่า</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1505,-21.9327" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#dbe6f0"/><rect y="86" width="132" height="26" fill="#9a9a9a"/><rect x="8" y="50" width="24" height="36" fill="#e07a5f"/><rect x="34" y="44" width="24" height="42" fill="#81b29a"/><rect x="60" y="52" width="24" height="34" fill="#f2cc8f"/><rect x="86" y="46" width="24" height="40" fill="#6d9dc5"/><g fill="#3a3a3a" opacity=".45"><rect x="16" y="70" width="8" height="16"/><rect x="42" y="70" width="8" height="16"/><rect x="68" y="70" width="8" height="16"/><rect x="94" y="70" width="8" height="16"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Laugavegur</text></svg><img class="ph" src="images/laugavegur.jpg" alt="Laugavegur" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>ถนน Laugavegur + ถนนสายรุ้ง <span class="rd">(เลากาเวกูร์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 60–90 นาที</span><span class="b free">💰 ฟรี (ช้อป/กาแฟตามใจ)</span></div>
+      <p>ถนนคนเดินสายหลัก ร้านของฝาก คาเฟ่ ปลายถนนสายรุ้งมองตรงไปเห็นโบสถ์ Hallgrímskirkja พอดี · แวะซูเปอร์ Bónus ซื้อของเข้าครัว</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1432,-21.9256" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_perlan.jpg" alt="Perlan"></div>
+    <div class="info">
+      <h4>Perlan <span class="rd">(เพียร์ตลัน)</span> — เสริม</h4>
+      <div class="badges"><span class="b opt">เสริม</span><span class="b time">⏱️ 1.5–2 ชม.</span><span class="b cost">💰 ~1,560 บาท</span></div>
+      <p>พิพิธภัณฑ์ธรรมชาติ: ถ้ำน้ำแข็งจำลอง, ท้องฟ้าจำลองแสงเหนือ, ภูเขาไฟ + ดาดฟ้าชมเมือง 360°</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1290,-21.9190" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <!-- ================= DAY 2 ================= -->
+  <div class="daybar">
+    <h2>วันที่ 2 · เสาร์ 25 ก.ค. — Golden Circle → Grímsnes</h2>
+    <div class="sub">3 ไฮไลต์คลาสสิก แล้วขับลงใต้</div>
+    <div class="tags"><span class="tag">🚗 รวม ~3 ชม.</span><span class="tag">📍 4 จุด</span><span class="tag">🛏️ นอน Grímsnes (Þúfukot)</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day2_thingvellir.jpg" alt="Thingvellir"></div>
+    <div class="info">
+      <h4>อุทยาน Þingvellir <span class="rd">(ธิงเวลลีร์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 60–90 นาที</span><span class="b free">💰 เข้าฟรี</span><span class="b cost">🅿️ จอด ~260 บาท</span></div>
+      <p>รอยแยกแผ่นทวีปอเมริกาเหนือ-ยูเรเชีย เดินหุบเขา Almannagjá + จุดกำเนิดรัฐสภาแรกของโลก มรดกโลก</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.2558,-21.1290" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day2_strokkur.jpg" alt="Strokkur"></div>
+    <div class="info">
+      <h4>Geysir · Strokkur <span class="rd">(เกย์ซีร์ · สโตรกกูร์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>บ่อน้ำพุร้อน Strokkur พุ่งสูง 15–20 ม. ทุก ~5–10 นาที ตั้งกล้องรอถ่ายได้เลย</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.3104,-20.3024" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day2_gullfoss.jpg" alt="Gullfoss"></div>
+    <div class="info">
+      <h4>น้ำตก Gullfoss <span class="rd">(กูลล์ฟอสส์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 นาที</span><span class="b free">💰 ฟรี (จอดฟรี)</span></div>
+      <p>น้ำตก 2 ชั้นขนาดยักษ์ พลังน้ำมหาศาล มีทางเดินหลายระดับ + คาเฟ่ (ซุปแกะดัง)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.3271,-20.1199" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day2_kerid.jpg" alt="Kerid"></div>
+    <div class="info">
+      <h4>ปล่องภูเขาไฟ Kerið <span class="rd">(เคริด)</span> — เสริม</h4>
+      <div class="badges"><span class="b opt">เสริม</span><span class="b time">⏱️ 30 นาที</span><span class="b cost">💰 ~180 บาท</span></div>
+      <p>ปล่องภูเขาไฟที่มีทะเลสาบสีฟ้าเทอร์คอยซ์ก้นปล่อง ขอบสีแดงสนิม เดินรอบขอบได้ อยู่บนเส้นทางลงใต้</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0413,-20.8850" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#bcd6cf"/><rect y="64" width="132" height="48" fill="#5aa6a0"/><ellipse cx="66" cy="70" rx="60" ry="12" fill="#7cc0b8"/><g fill="#fff" opacity=".7"><ellipse cx="50" cy="50" rx="10" ry="14"/><ellipse cx="78" cy="46" rx="8" ry="12"/><ellipse cx="64" cy="52" rx="7" ry="10"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Secret Lagoon</text></svg><img class="ph" src="images/secretlagoon.jpg" alt="Secret Lagoon" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Secret Lagoon <span class="rd">(ซีเคร็ต ลากูน)</span> — เสริม</h4>
+      <div class="badges"><span class="b opt">เสริม</span><span class="b time">⏱️ 1.5–2 ชม.</span><span class="b cost">💰 ~780 บาท</span></div>
+      <p>บ่อน้ำร้อนธรรมชาติเก่าแก่สุดของไอซ์แลนด์ ราคาย่อมเยากว่า Blue Lagoon มาก บรรยากาศบ้านๆ ที่ Flúðir</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1378,-20.3097" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ นอน: Þúfukot · Grímsnes (คืน 1/2) — เข้าครัวทำกับข้าว</div>
+
+  <!-- ================= DAY 3 ================= -->
+  <div class="daybar">
+    <h2>วันที่ 3 · อาทิตย์ 26 ก.ค. — น้ำตกใต้ + ซากเครื่องบิน</h2>
+    <div class="sub">ฐาน Hella · ขับสั้น ไป-กลับ</div>
+    <div class="tags"><span class="tag">🚗 รวม ~3.5 ชม. (จาก Grímsnes)</span><span class="tag">📍 3–4 จุด</span><span class="tag">🛏️ นอน Grímsnes</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_seljalandsfoss.jpg" alt="Seljalandsfoss"></div>
+    <div class="info">
+      <h4>น้ำตก Seljalandsfoss <span class="rd">(เซลยาลันส์ฟอสส์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 นาที</span><span class="b free">💰 เข้าฟรี</span><span class="b cost">🅿️ จอด ~210 บาท</span></div>
+      <p><b>เดินลอดหลังม่านน้ำ</b>ได้ (ทางลื่น เตรียมเสื้อกันฝน) + เดินเลียบผา ~5 นาทีถึงน้ำตกซ่อน Gljúfrabúi ในซอกหิน</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.6156,-19.9886" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_skogafoss.jpg" alt="Skogafoss"></div>
+    <div class="info">
+      <h4>น้ำตก Skógafoss <span class="rd">(สโกกาฟอสส์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>น้ำตกกว้าง 25 ม. สูง 60 ม. เดินเข้าใกล้ได้ (มักมีรุ้ง) หรือขึ้นบันได ~370 ขั้นไปจุดชมวิวบน</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.5321,-19.5114" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#39424e"/><rect y="72" width="132" height="40" fill="#2a2e35"/><ellipse cx="66" cy="72" rx="72" ry="8" fill="#232830"/><g fill="#dfe6ec"><rect x="40" y="50" width="46" height="13" rx="4"/><polygon points="86,51 106,55 106,61 86,62"/><rect x="55" y="43" width="14" height="9" rx="2"/><polygon points="44,50 34,42 41,50"/><polygon points="48,63 40,74 46,74 54,63"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">ซากเครื่องบิน DC-3</text></svg><img class="ph" src="images/planewreck.jpg" alt="Solheimasandur DC-3" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>ซากเครื่องบิน Sólheimasandur DC-3 <span class="rd">(โซลเฮมาซันดูร์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 1.5–2.5 ชม.</span><span class="b cost">🅿️ จอด ~195 บาท</span><span class="b cost">🚌 ชัตเทิล ~885 บาท</span></div>
+      <p>ซากเครื่องบินทหารสหรัฐฯ ตกปี 1973 บนหาดทรายดำโล่ง จุดถ่ายรูปสุดเท่ (ปี 2025 เพิ่มลำที่ 2) · <b>แนะนำนั่งชัตเทิล</b> (ทุก ~30 นาที 10:00–16:30) แทนเดิน ~4 กม./ทาง</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.4913,-19.3632" target="_blank">🧭 นำทาง (ลานจอด)</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_solheimajokull.jpg" alt="Solheimajokull"></div>
+    <div class="info">
+      <h4>ธารน้ำแข็ง Sólheimajökull <span class="rd">(โซลเฮมาเยอคุตล์)</span> — เสริม</h4>
+      <div class="badges"><span class="b opt">เสริม</span><span class="b time">⏱️ 45–60 นาที</span><span class="b cost">🅿️ จอด ~195 บาท</span></div>
+      <p>ลิ้นธารน้ำแข็งเข้าถึงง่าย เดินจากลานจอด ~15–20 นาทีถึงจุดชม (อย่าเดินขึ้นน้ำแข็งเองถ้าไม่มีไกด์)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.5300,-19.3700" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ นอน: Þúfukot · Grímsnes (คืน 2/2)</div>
+
+  <!-- ================= DAY 4 ================= -->
+  <div class="daybar">
+    <h2>วันที่ 4 · จันทร์ 27 ก.ค. — Vík + พัฟฟิน → Hvolsvöllur</h2>
+    <div class="sub">เที่ยวโซน Vík แล้วขับไปตะวันออก</div>
+    <div class="tags"><span class="tag">🚗 รวม ~3.5 ชม.</span><span class="tag">📍 4 จุด</span><span class="tag">🛏️ นอน Hvolsvöllur</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_dyrholaey.jpg" alt="Dyrholaey"></div>
+    <div class="info">
+      <h4>🐧 Dyrhólaey <span class="rd">(ดีร์โฮลาเอย์)</span> — จุดชมพัฟฟิน</h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>แหลมหินโค้งธรรมชาติ + <b>จุดชมพัฟฟินบนบกที่ดีสุดของชายฝั่งใต้</b> (ปลาย ก.ค. ยังทันปลายฤดู) เห็นเยอะสุดเช้าตรู่/เย็น · พกกล้องส่องไกล + เสื้อกันลม</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.4006,-19.1283" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_reynisfjara.jpg" alt="Reynisfjara"></div>
+    <div class="info">
+      <h4>หาดทรายดำ Reynisfjara <span class="rd">(เรย์นิสฟยารา)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 45 นาที</span><span class="b free">💰 ฟรี (จอดมีค่าเล็กน้อย)</span></div>
+      <p>หาดทรายดำ เสาหินบะซอลต์หกเหลี่ยม ถ้ำหิน + เสาหิน Reynisdrangar กลางทะเล · ⚠️ <b>ระวังคลื่น sneaker wave</b> อย่ายืนใกล้น้ำ</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.4064,-19.0448" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_vik.jpg" alt="Vik"></div>
+    <div class="info">
+      <h4>หมู่บ้าน Vík <span class="rd">(วิก)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 นาที</span><span class="b free">💰 ฟรี (จุดกินข้าว)</span></div>
+      <p>หมู่บ้านเล็กใต้สุด โบสถ์แดงบนเนินวิวสวย มีซูเปอร์ (Krónan), ปั๊ม, ร้านอาหาร จุดพักเที่ยงกำลังดี</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.4186,-19.0060" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day4_fjadrargljufur.jpg" alt="Fjadrargljufur"></div>
+    <div class="info">
+      <h4>แคนยอน Fjaðrárgljúfur <span class="rd">(ฟยาดราร์กลยูวูร์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>หุบผาลึก ~100 ม. คดเคี้ยว ผนังปกคลุมมอสเขียว มีทางเดินเลียบขอบผาไปหลายจุดชมวิว อยู่ก่อนถึง Hof</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.7714,-18.1720" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ นอน: Hamar – Puffin 1 · Hvolsvöllur (คืน 1/2) — ⚠️ ขับกลับจาก Fjaðrárgljúfur ~1.5 ชม.</div>
+
+  <!-- ================= DAY 5 ================= -->
+  <div class="daybar">
+    <h2>วันที่ 5 · อังคาร 28 ก.ค. — ⭐ Jökulsárlón + Skaftafell</h2>
+    <div class="sub">ไฮไลต์ทริป · ไป-กลับจาก Hvolsvöllur · วันขับไกลสุด — ออกก่อน 08:00</div>
+    <div class="tags"><span class="tag">🚗 รวม ~6.5 ชม. (ไป-กลับจาก Hvolsvöllur)</span><span class="tag">📍 4 จุด</span><span class="tag">🛏️ นอน Hvolsvöllur</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day4_jokulsarlon.jpg" alt="Jokulsarlon"></div>
+    <div class="info">
+      <h4>⭐ ทะเลสาบธารน้ำแข็ง Jökulsárlón <span class="rd">(เยอคุลซาร์ลอน)</span></h4>
+      <div class="badges"><span class="b time">⏱️ ชม 45–60 นาที</span><span class="b free">💰 ชมฟรี</span><span class="b cost">🚤 ล่องเรือ ~1,850 บาท</span></div>
+      <p>ทะเลสาบที่มีภูเขาน้ำแข็งลอยล่อง บางครั้งมีแมวน้ำ · <b>ล่องเรือ (เสริม)</b>: สะเทินน้ำสะเทินบก ~ISK 7,100 (~1,850฿) / Zodiac ~ISK 11,900+ (~3,100฿) — ควรจองล่วงหน้า</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0784,-16.2306" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day4_diamondbeach.jpg" alt="Diamond Beach"></div>
+    <div class="info">
+      <h4>Diamond Beach <span class="rd">(ไดมอนด์ บีช / หาดเพชร)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>ก้อนน้ำแข็งใสเกยหาดทรายดำ วิบวับเหมือนเพชร อยู่ฝั่งตรงข้ามถนนจาก Jökulsárlón เดินถึงกัน</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0421,-16.1756" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day4_svartifoss.jpg" alt="Svartifoss"></div>
+    <div class="info">
+      <h4>Skaftafell + น้ำตก Svartifoss <span class="rd">(สกาฟตาเฟตล์ / สวาร์ติฟอสส์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 2–2.5 ชม. (เดิน)</span><span class="b free">💰 เข้าฟรี</span><span class="b cost">🅿️ จอด ~270 บาท</span></div>
+      <p>เดินเทรล ~1.5 กม. (ขึ้นเนิน) ไปน้ำตก Svartifoss ที่ล้อมด้วยเสาหินบะซอลต์ดำเหมือนออร์แกน (ค่าจอดลด 50% ถ้าจ่ายที่ Jökulsárlón วันเดียวกัน)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0159,-16.9666" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/mulagljufur.jpg" alt="Múlagljúfur Canyon"></div>
+    <div class="info">
+      <h4>⭐ แคนยอน Múlagljúfur <span class="rd">(มูลาคลยูวูร์) — จุดใหม่! 📸</span></h4>
+      <div class="badges"><span class="b time">⏱️ 1.5–2 ชม. (เดิน)</span><span class="b free">💰 เข้าฟรี</span><span class="b opt">เสริม</span></div>
+      <p>แคนยอนลับสุดปัง เขียวมอสทั้งหุบ มีน้ำตก <b>Hangandifoss</b> ไหลลงเหว วิวเปิดออกทะเล/ธารน้ำแข็ง 🏔️ · เดินเทรลขึ้นเนิน ~1.5 กม./เที่ยว (ทางดินอาจแฉะ ใส่รองเท้ากันลื่น) · อยู่<b>ริมทางระหว่าง Skaftafell ↔ Jökulsárlón</b> เลี้ยวเข้าถนนลูกรังสั้นๆ แวะได้ไม่อ้อม · หน้าร้อนฟ้าสว่างถึงเที่ยงคืน เที่ยวช่วงค่ำได้คนน้อย</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.9808,-16.4303" target="_blank">🧭 นำทาง (จุดจอด)</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ นอน: Hamar – Puffin 1 · Hvolsvöllur (คืน 2/2) — ⚠️ วันขับไกลสุดของทริป ออกเช้า (≤08:00) กลับค่ำ</div>
+
+  <!-- ================= DAY 6 ================= -->
+  <div class="daybar">
+    <h2>วันที่ 6 · พุธ 29 ก.ค. — ขับสู่ Snæfellsnes → Kirkjufell</h2>
+    <div class="sub">เช็กเอาต์ก่อน 11:00 · ขับยาว ~330 กม. (~4.5 ชม.) แวะเที่ยวระหว่างทาง · เย็นถ่าย Kirkjufell แสงทอง</div>
+    <div class="tags"><span class="tag">🚗 รวม ~4.5 ชม.</span><span class="tag">📍 4 จุด</span><span class="tag">🛏️ นอน Grundarfjörður ✅</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#cfe0ec"/><rect y="78" width="132" height="34" fill="#7f9e73"/><path d="M0,78 Q40,66 80,78 T132,74 V112 H0Z" fill="#5a97c2"/><rect x="30" y="58" width="18" height="18" fill="#e8ac5e"/><polygon points="30,58 39,48 48,58" fill="#c0392b"/><rect x="62" y="54" width="20" height="22" fill="#eee"/><polygon points="62,54 72,44 82,54" fill="#3f6d8e"/><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Borgarnes</text></svg><img class="ph" src="images/borgarnes.jpg" alt="Borgarnes" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>แวะพัก: Borgarnes <span class="rd">(บอร์กาเนส)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 นาที · ~เที่ยง</span><span class="b free">💰 ฟรี (ค่าอาหารตามใจ)</span></div>
+      <p>เมืองริมฟยอร์ดประตูสู่ตะวันตก · กินข้าวเที่ยง + ซื้อของเข้าครัวที่ Bónus/Netto (ซูเปอร์ใหญ่สุดท้ายก่อนเข้าคาบสมุทร)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.5390,-21.9210" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/gerduberg.jpg" alt="Gerduberg"></div>
+    <div class="info">
+      <h4>Gerðuberg <span class="rd">(แกร์ดูแบร์ก)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>กำแพงเสาหินบะซอลต์หกเหลี่ยมเรียงแถวยาวเป็นกิโล เหมือนคนสร้าง จอดริมทางเดินถึงตีนผาได้เลย</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7793,-22.3535" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/ytritunga.jpg" alt="Ytri Tunga seals"></div>
+    <div class="info">
+      <h4>🦭 Ytri Tunga <span class="rd">(อีตรี ทุงกา)</span> — หาดแมวน้ำ</h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 นาที</span><span class="b cost">🅿️ ~200 บาท/คัน</span></div>
+      <p>หาดทรายทองที่แมวน้ำ harbor seal ชอบนอนอาบแดดบนโขดหิน โอกาสเจอสูงมากช่วงหน้าร้อน เอากล้องซูมมาด้วย · ห้ามเข้าใกล้เกิน 50 ม.</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.8030,-23.0770" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day8_kirkjufell.jpg" alt="Kirkjufell"></div>
+    <div class="info">
+      <h4>⭐ เย็น: Kirkjufell + Kirkjufellsfoss <span class="rd">(คีร์คยูเฟตล์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 1–1.5 ชม. · แสงสวย 20:00–22:00</span><span class="b cost">🅿️ ~180 บาท/คัน</span></div>
+      <p>ภูเขาทรงหมวกแม่มดที่ถูกถ่ายรูปมากสุดในไอซ์แลนด์ (Game of Thrones) + น้ำตกหน้าภูเขาเป็นฉากคลาสสิก · ห่างที่พักแค่ ~5 นาที พระอาทิตย์ตก ~22:40 ไม่ต้องรีบ</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.9270,-23.3110" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ นอน: Saból 2 – Kirkjufell Cottage · Grundarfjörður — มีฮอตทับส่วนตัว เช็กอิน 15:00 (lockbox)</div>
+
+  <!-- ================= DAY 7 ================= -->
+  <div class="daybar">
+    <h2>วันที่ 7 · พฤหัส 30 ก.ค. — วนอุทยาน Snæfellsjökull → Keflavík</h2>
+    <div class="sub">เช็กเอาต์ก่อน 11:00 · วนปลายคาบสมุทรเก็บ 6 จุด แล้วขับเข้า Keflavík ค่ำ (~2 ชม. 45 น.)</div>
+    <div class="tags"><span class="tag">🚗 รวม ~360 กม. / ขับ ~4.5 ชม.</span><span class="tag">📍 6 จุด</span><span class="tag">🛏️ นอน Keflavík ✅จองแล้ว</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/saxholl.jpg" alt="Saxholl crater"></div>
+    <div class="info">
+      <h4>Saxhóll Crater <span class="rd">(ซักซ์โฮตล์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 30 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>ปล่องภูเขาไฟอายุ 3–4 พันปี มีบันไดเหล็กขึ้นถึงปากปล่อง ~10 นาที วิวทุ่งลาวา 360° รอบทิศ</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.8280,-23.9330" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day9_djupalonssandur.jpg" alt="Djupalonssandur"></div>
+    <div class="info">
+      <h4>⭐ Djúpalónssandur <span class="rd">(ดยูปาลอนส์ซันดูร์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 1–1.5 ชม.</span><span class="b free">💰 ฟรี</span></div>
+      <p>หาดกรวดดำมนกลม "ไข่มุกดำ" + ซากเรือประมงอังกฤษปี 1948 กระจายทั้งหาด + หินยกกำลัง 4 ก้อนของลูกเรือยุคเก่า (23–154 กก. ลองยกได้!) · คลื่นแรง ห้ามลงน้ำ</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7522,-23.8949" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day9_londrangar.jpg" alt="Londrangar"></div>
+    <div class="info">
+      <h4>Lóndrangar <span class="rd">(โลนดรังการ์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>แท่งหินภูเขาไฟคู่สูง 75 ม. ปักกลางหน้าผาริมทะเล เดินจากลานจอดไปจุดชมวิว 5 นาที นกทะเลทำรังเต็มผา</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7360,-23.8080" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/hellnar.jpg" alt="Hellnar"></div>
+    <div class="info">
+      <h4>เที่ยง: Hellnar <span class="rd">(เฮตล์นาร์)</span> — คาเฟ่ริมอ่าว</h4>
+      <div class="badges"><span class="b time">⏱️ ~1 ชม.</span><span class="b cost">💰 ซุปปลา ~650 บาท</span></div>
+      <p>หมู่บ้านประมงเก่าใต้ธารน้ำแข็ง Snæfellsjökull · กินข้าวเที่ยงที่ Fjöruhúsið คาเฟ่ริมอ่าวชื่อดังเรื่องซุปปลา วิวหน้าผา Valasnös</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7500,-23.6430" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day9_arnarstapi.jpg" alt="Arnarstapi Gatklettur"></div>
+    <div class="info">
+      <h4>⭐ Cliff walk: Hellnar → Arnarstapi <span class="rd">(อาร์นาร์สตาปี)</span></h4>
+      <div class="badges"><span class="b time">⏱️ ไป-กลับ ~2 ชม. (2.5 กม./เที่ยว)</span><span class="b free">💰 ฟรี</span></div>
+      <p>เส้นเดินเลียบผาลาวาสวยสุดของคาบสมุทร ผ่านซุ้มหินโค้ง Gatklettur + เสาหิน + โพรงถ้ำ นกนางนวล Arctic tern บินว่อน · ขี้เกียจเดินไกล: ขับไป Arnarstapi แล้วเดินวนสั้นๆ แถว Gatklettur ก็ได้</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7680,-23.6210" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day9_budakirkja.jpg" alt="Budakirkja"></div>
+    <div class="info">
+      <h4>Búðakirkja <span class="rd">(บูดาเคียคยา)</span> — โบสถ์ดำ</h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>โบสถ์ไม้สีดำปี 1847 โดดเดี่ยวกลางทุ่งลาวา Búðahraun ฉากหลังธารน้ำแข็ง จุดถ่ายรูปสุดท้ายก่อนอำลาคาบสมุทร → จากนี้ขับยาวเข้า Keflavík ~2 ชม. 45 น. (แวะพัก Borgarnes ได้)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.8220,-23.3850" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ นอน: Keflavík · Rokkheimur Studio (คืน 1/2) — lockbox เข้าเอง ถึง ~20:30–21:00</div>
+
+  <!-- ================= DAY 8 ================= -->
+  <div class="daybar">
+    <h2>วันที่ 8 · ศุกร์ 31 ก.ค. — Reykjanes + Keflavík + Blue Lagoon 20:00</h2>
+    <div class="sub">เที่ยวใกล้สนามบิน → แช่บ่อน้ำร้อนรอบ 2 ทุ่ม (Best Rate)</div>
+    <div class="tags"><span class="tag">🚗 รวม ~1.5 ชม.</span><span class="tag">📍 6 จุด</span><span class="tag">🛏️ นอน Keflavík</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_bridge.jpg" alt="Bridge"></div>
+    <div class="info">
+      <h4>สะพานเชื่อมทวีป Miðlína <span class="rd">(มิดลีนา)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>สะพานเดินข้ามรอยแยกระหว่างแผ่นเปลือกโลกอเมริกาเหนือ–ยูเรเชีย เดินข้ามทวีปในไม่กี่ก้าว</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8683,-22.6760" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#d9c4b0"/><rect y="72" width="132" height="40" fill="#9c6a44"/><ellipse cx="60" cy="74" rx="30" ry="8" fill="#6e4a30"/><g fill="#fff" opacity=".85"><ellipse cx="58" cy="50" rx="12" ry="17"/><ellipse cx="74" cy="44" rx="9" ry="13"/><ellipse cx="45" cy="50" rx="8" ry="11"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Gunnuhver</text></svg><img class="ph" src="images/gunnuhver.jpg" alt="Gunnuhver" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Gunnuhver <span class="rd">(กุนนูห์เวร์)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>บ่อโคลนเดือด + ไอน้ำพวยพุ่งใหญ่สุดของไอซ์แลนด์ มีทางเดินไม้ให้ชมใกล้ๆ (ระวังไอร้อน)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8186,-22.6836" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_reykjanes.jpg" alt="Reykjanes"></div>
+    <div class="info">
+      <h4>ประภาคาร Reykjanesviti + หน้าผา Valahnúkamöl</h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>ประภาคารเก่าแก่ที่สุดของไอซ์แลนด์บนเนิน + หน้าผาหินลาวา เสาหินกลางทะเล นกทะเลเยอะ วิวมหาสมุทรสุดขอบ</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8118,-22.7080" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#7fb0d4"/><rect y="70" width="132" height="42" fill="#3f7ba6"/><path d="M0,70 Q33,58 66,70 T132,70 V112 H0Z" fill="#5a97c2"/><ellipse cx="70" cy="88" rx="22" ry="9" fill="#2c5f86"/><path d="M12,64 Q22,48 36,60" stroke="#fff" stroke-width="4" fill="none" opacity=".8"/><path d="M96,66 Q104,52 116,62" stroke="#fff" stroke-width="3" fill="none" opacity=".6"/><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Brimketill</text></svg><img class="ph" src="images/brimketill.jpg" alt="Brimketill" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Brimketill <span class="rd">(บริมเคทิล)</span> — เสริม</h4>
+      <div class="badges"><span class="b opt">เสริม</span><span class="b time">⏱️ 15–20 นาที</span><span class="b free">💰 ฟรี</span></div>
+      <p>แอ่งหินลาวารูปอ่างธรรมชาติริมทะเล คลื่นซัดเข้าสวยงาม มีจุดชมวิวปลอดภัย (อย่าลงใกล้น้ำ)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8300,-22.6660" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#2f3b47"/><path d="M18,112 Q18,44 66,40 Q114,44 114,112Z" fill="#46586a"/><path d="M34,112 Q34,60 66,56 Q98,60 98,112Z" fill="#26313b"/><circle cx="66" cy="76" r="10" fill="#e8b98f"/><rect x="58" y="86" width="16" height="24" rx="6" fill="#c65f7a"/><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.5);stroke-width:2.5px">ถ้ำยักษ์สาว</text></svg><img class="ph" src="images/giantess.jpg" alt="Giantess cave" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>The Giantess in the Cave <span class="rd">(ถ้ำยักษ์สาว)</span></h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 นาที</span><span class="b free">💰 ฟรี (10:00–17:00)</span></div>
+      <p>ถ้ำจำลองริมท่าเรือ Keflavík มีนางยักษ์ใจดีจากนิทานเด็กนอนกรนในเก้าอี้โยก ของยักษ์ขนาดใหญ่ ถ่ายรูปสนุก เหมาะทุกวัย</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0028,-22.5636" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#8fc0dd"/><rect y="74" width="132" height="38" fill="#3f7ba6"/><path d="M22,74 Q66,92 110,74 L100,62 L32,62 Z" fill="#6b3f24"/><path d="M32,62 Q26,46 40,44" stroke="#6b3f24" stroke-width="4" fill="none"/><rect x="64" y="30" width="4" height="32" fill="#5a3620"/><polygon points="68,32 92,42 68,52" fill="#d94f4f"/><g fill="#c9a24a"><circle cx="46" cy="67" r="3"/><circle cx="60" cy="69" r="3"/><circle cx="74" cy="69" r="3"/><circle cx="88" cy="67" r="3"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Viking World</text></svg><img class="ph" src="images/vikingworld.jpg" alt="Viking World" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Viking World <span class="rd">(ไวกิ้ง เวิลด์)</span> — เสริม</h4>
+      <div class="badges"><span class="b opt">เสริม</span><span class="b time">⏱️ 45–60 นาที</span><span class="b cost">💰 ~390 บาท (เช็กเว็บ)</span></div>
+      <p>พิพิธภัณฑ์เรือไวกิ้งจำลองขนาดเท่าจริง "Íslendingur" ที่เคยแล่นข้ามมหาสมุทรจริง + นิทรรศการยุคไวกิ้ง มีคาเฟ่</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.9930,-22.5610" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day10_bluelagoon.jpg" alt="Blue Lagoon"></div>
+    <div class="info">
+      <h4>⭐ Blue Lagoon <span class="rd">(บลูลากูน)</span> — รอบ 20:00 (Best Rate)</h4>
+      <div class="badges"><span class="b time">⏱️ 2–2.5 ชม.</span><span class="b cost">💰 Comfort จาก ~3,120 บาท</span></div>
+      <p>บ่อน้ำร้อนสีฟ้าน้ำนม แช่ท่ามกลางแสง midnight sun · จองรอบ <b>20:00 · 31 ก.ค.</b> ล่วงหน้า (เต็มเร็ว) · ออกจากน้ำ 22:30 ปิด 23:00 · กลับที่พัก ~25 นาที · 🌋 เช็กสถานะภูเขาไฟที่ safetravel.is ก่อนไป</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8804,-22.4495" target="_blank">🧭 นำทาง</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ นอน: Keflavík · Rokkheimur Studio (คืน 2/2) · พรุ่งนี้คืนรถ 07:00 บิน 08:40</div>
+
+  <!-- ================= ACCOMMODATION ================= -->
+  <h2 class="sec" id="acc-sec">🏠 ที่พัก (จองครบ 5 ที่ / 8 คืน ✅)</h2>
+
+  <div class="acc">
+    <h4>1) ✅ เรคยาวิก · คืน ศ 24 ก.ค. — Quiet Apartment Very Near Downtown</h4>
+    <div class="price">จองผ่าน Airbnb · โฮสต์ตอบไวมาก</div>
+    <img class="accphoto" src="images/acc1_reykjavik.jpg" alt="Reykjavik apartment" onerror="this.remove()">
+    <ul>
+      <li><b>📋 คำแนะนำเข้าพัก:</b> ไม่ใช่ self check-in — <b>ทักโฮสต์ในแอป Airbnb แจ้งเวลาถึงล่วงหน้า</b> เพื่อนัดรับกุญแจ · ⚠️ ช่วงหน้าร้อน 2026 มีงานก่อสร้างข้างเคียงเสียงดังช่วงกลางวันวันธรรมดา (เราถึงวันศุกร์ เย็นแล้วน่าจะเงียบ)</li>
+      <li><b>ลักษณะ:</b> อะพาร์ตเมนต์ทั้งหลัง (สูงสุด 4 คน) ย่านเงียบฝั่งตะวันตกของเมืองเก่า ถนน Unnarstígur เดินเข้าใจกลางเมืองได้</li>
+      <li><b>เช็กอิน/เอาต์:</b> 15:00 / 11:00 — ถึง KEF 07:50 รับรถ 09:00 เข้าเมือง ~45 นาที ถึงก่อนเช็กอิน → จอดรถแล้วเที่ยวเมืองรอได้ (ฝากถามโฮสต์เรื่อง early check-in / ฝากกระเป๋า)</li>
+      <li><b>เดินเที่ยว:</b> Hallgrímskirkja ~15 นาที · Laugavegur ~12 นาที · Harpa/Sun Voyager ~15 นาที · ริมทะเลสาบ Tjörnin ~8 นาที — คืนแรกไม่ต้องใช้รถเลย</li>
+      <li><b>ของกิน/ซูเปอร์:</b> Bónus สาขา Hallveigarstígur (เดิน ~10 นาที) ตุนมื้อเช้า · ร้านฮอตด็อก Bæjarins Beztu ใกล้ท่าเรือ</li>
+      <li><b>ที่อยู่:</b> Unnarstígur 4, 101 Reykjavík
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=Unnarst%C3%ADgur+4%2C+101+Reykjav%C3%ADk" target="_blank">🧭 นำทาง</a></li>
+    </ul>
+  </div>
+
+  <div class="acc">
+    <h4>2) ✅ Golden Circle (Grímsnes) · คืน ส–อา 25–26 ก.ค. — Þúfukot</h4>
+    <div class="price">จองผ่าน Airbnb · ⭐ Superhost</div>
+    <img class="accphoto" src="images/acc2_thufukot.jpg" alt="Thufukot cabin hot tub" onerror="this.remove()">
+    <ul>
+      <li><b>📋 คำแนะนำเข้าพัก:</b> 🛁 <b>มีฮอตทับวิวภูเขา!</b> เอาชุดว่ายน้ำไปด้วย · ไม่ใช่ self check-in — โฮสต์ตอบช้าได้ถึง 1 วัน <b>ทักแจ้งเวลาถึงล่วงหน้าตั้งแต่เนิ่น ๆ</b> · ไม่มีเครื่องเตือน CO ติดตั้ง (จุดเตาแก๊ส/เตาผิงระวังหน่อย)</li>
+      <li><b>ลักษณะ:</b> บ้านชนบททั้งหลัง (สูงสุด 4 คน) กลางทุ่ง Grímsnes ใจกลางโซน Golden Circle เงียบสงบ วิวเปิดโล่ง กลางคืนถ้าฟ้าใสเห็นแสงเที่ยงคืนสวย</li>
+      <li><b>เช็กอิน/เอาต์:</b> 15:00 / <b>12:00 (เที่ยง — สายกว่าที่อื่น)</b> เช้าวันที่ 27 ไม่ต้องรีบ</li>
+      <li><b>ระยะขับจากที่พัก:</b> Kerið ~15 นาที · Geysir ~35 นาที · Gullfoss ~45 นาที · Þingvellir ~40 นาที · Secret Lagoon (Flúðir) ~30 นาที — วันที่ 26 ลงใต้ไปน้ำตก Seljalandsfoss ~50 นาที</li>
+      <li><b>ของกิน/ซูเปอร์:</b> ตุนของจาก Bónus Selfoss (~20 นาที) ก่อนเข้าที่พัก มีครัวครบ ทำกับข้าวประหยัดได้ 2 คืนเต็ม</li>
+      <li><b>การหาที่พัก:</b> ไม่มีเลขที่ถนน — จุดหมายในแอปนำทางใช้ชื่อ "Þúfukot" หรือเปิดพิกัดจากแอป Airbnb ก่อนออกจากเมือง (สัญญาณมือถือแถวนั้นมีแต่เผื่อไว้)
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=%C3%9E%C3%BAfukot%2C+Gr%C3%ADmsnes-+og+Grafningshreppur" target="_blank">🧭 นำทาง</a></li>
+    </ul>
+  </div>
+
+  <div class="acc">
+    <h4>3) ✅ Hvolsvöllur · คืน จ–อ 27–28 ก.ค. — Hamar – Puffin 1</h4>
+    <div class="price">จองผ่าน Airbnb · ⭐ Superhost · โฮสต์ตอบไวมาก</div>
+    <img class="accphoto" src="images/acc3_hamar.jpg" alt="Hamar Puffin tiny home" onerror="this.remove()">
+    <ul>
+      <li><b>📋 คำแนะนำเข้าพัก:</b> ✅ <b>Self check-in ผ่าน lockbox</b> — รหัสมาในแอปก่อนวันเข้าพัก มาถึงดึกแค่ไหนก็เข้าได้ · เป็น tiny home ห่างหมู่บ้าน ~15 นาที <b>ซื้อของที่ Krónan ก่อนขึ้นบ้าน</b> · ไม่มีเครื่องเตือน CO</li>
+      <li><b>ลักษณะ:</b> บ้านหลังเล็กในฟาร์ม Hamar (<b>สูงสุด 3 คนพอดี</b>) นอกเมือง Hvolsvöllur ฐานยุทธศาสตร์ชายฝั่งใต้ วิวทุ่งฟาร์ม + ภูเขา Eyjafjallajökull</li>
+      <li><b>เช็กอิน/เอาต์:</b> 15:00 / 11:00 — วันที่ 27 มาจาก Grímsnes แวะเที่ยว Vík ก่อนเข้าเช็กอินตอนเย็นได้ (Fjaðrárgljúfur → กลับมาที่พัก ~1.5 ชม.)</li>
+      <li><b>ระยะขับจากที่พัก:</b> Seljalandsfoss ~20 นาที · Skógafoss ~35 นาที · Vík ~1 ชม. · ⚠️ วันที่ 28 ไป Jökulsárlón ไกล ~3 ชม./เที่ยว — ออกก่อน 08:00</li>
+      <li><b>ของกิน/ซูเปอร์:</b> Krónan Hvolsvöllur (~10 นาที) + ปั๊ม N1 มีของกิน · ร้านแนะนำในเมือง: Eldstó Art Café</li>
+      <li><b>ที่อยู่:</b> Hamar, 861 Hvolsvöllur — ทางเข้าฟาร์มอยู่นอกถนนหลัก สังเกตป้าย "Hamar" เปิดพิกัดจากแอป Airbnb ประกอบ
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=Hamar%2C+861+Hvolsv%C3%B6llur" target="_blank">🧭 นำทาง</a></li>
+    </ul>
+  </div>
+
+  <div class="acc">
+    <h4>4) ✅ Grundarfjörður (Kirkjufell) · คืน พ 29 ก.ค. — Hálsaból 2 – Kirkjufell Cottage</h4>
+    <div class="price">จองผ่าน Airbnb · ⭐ Superhost · โฮสต์ตอบไวมาก</div>
+    <img class="accphoto" src="images/acc4_sabol.jpg" alt="Kirkjufell cottage hot tub" onerror="this.remove()">
+    <ul>
+      <li><b>📋 คำแนะนำเข้าพัก:</b> ✅ <b>Self check-in ผ่าน lockbox</b> ไม่ต้องนัดโฮสต์ · 🛁 ฮอตทับส่วนตัววิว Kirkjufell (ดูรูป!) เอาชุดว่ายน้ำเตรียมไว้ · อยู่ห่าง Kirkjufellsfoss แค่ไม่กี่ร้อยเมตร — เดิน/ขับแป๊บเดียวถึงจุดถ่ายรูป</li>
+      <li><b>ลักษณะ:</b> คอตเทจทั้งหลัง (สูงสุด 5 คน) ริมถนน Snæfellsnesvegur ชานเมือง Grundarfjörður · 🛁 <b>ฮอตทับส่วนตัว</b> — แช่น้ำร้อนชมวิวภูเขาหลังขับรถมาทั้งวัน คุ้มมาก</li>
+      <li><b>เช็กอิน/เอาต์:</b> 15:00 / 11:00 · <b>self check-in ผ่าน lockbox</b> — รหัสจะมาในแอป Airbnb ก่อนวันเข้าพัก ไม่ต้องนัดโฮสต์ มาถึงกี่โมงก็เข้าได้</li>
+      <li><b>ไฮไลต์:</b> Kirkjufell + Kirkjufellsfoss ห่างแค่ ~5 นาที — เย็นวันที่ 29 กินข้าว แช่ฮอตทับ แล้วค่อยออกไปถ่ายช่วง 20:00–22:00 แสงสวยสุด (อาทิตย์ตก ~22:40)</li>
+      <li><b>ของกิน/ซูเปอร์:</b> Kjörbúðin ในเมือง Grundarfjörður (~5 นาที) · ร้านปลาแนะนำ Bjargarsteinn Mathús วิวอ่าว (จองล่วงหน้าถ้าไปได้)</li>
+      <li><b>ที่อยู่:</b> Snæfellsnesvegur, 350 Grundarfjörður — อยู่ริมถนนหลัก 54 หาไม่ยาก
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=Grundarfj%C3%B6r%C3%B0ur%2C+Iceland" target="_blank">🧭 นำทางเข้าเมือง</a></li>
+    </ul>
+  </div>
+
+  <div class="acc">
+    <h4>5) ✅ Keflavík · คืน พฤ–ศ 30–31 ก.ค. — Rokkheimur Studio Apartment</h4>
+    <div class="price">จองผ่าน Airbnb</div>
+    <img class="accphoto" src="images/acc5_rokkheimur.jpg" alt="Rokkheimur Studio Apartment" onerror="this.remove()">
+    <ul>
+      <li><b>📋 คำแนะนำเข้าพัก:</b> 🔑 <b>Self check-in ด้วย lockbox</b> — เข้าได้เองไม่ต้องรอโฮสต์ · วันที่ 30 มาถึงจาก Snæfellsnes ~20:30–21:00 เข้าได้เลย · เช้าวันที่ 1 ส.ค. ออกตี 5 ครึ่ง–6 โมงไปคืนรถ ล็อกประตูใส่กุญแจกลับ lockbox ได้เลย (ไม่รบกวนโฮสต์)</li>
+      <li><b>ลักษณะ:</b> สตูดิโออพาร์ตเมนต์ (สูงสุด 3 คน — พอดีเรา) · กฎบ้าน: ไม่เลี้ยงสัตว์ · มีเครื่องตรวจควัน</li>
+      <li><b>ทำเล:</b> Skólavegur ใจกลางเมือง Keflavík · <b>ใกล้สนามบิน KEF ~5–7 นาที</b> — คืนรถ 07:00 + บิน 08:40 สบายมาก · Blue Lagoon ~20 นาที (คืนวันที่ 31 กลับมานอนหลังแช่)</li>
+      <li><b>เช็กอิน/เอาต์:</b> หลัง 16:00 / ก่อน 11:00 · 3 คน</li>
+      <li>✅ <b>วันที่ยืนยันถูกต้อง: เช็กอิน 30 ก.ค. → เช็กเอาต์ 1 ส.ค. 2026 (2 คืน)</b></li>
+    </ul>
+  </div>
+
+  <!-- ================= TIPS ================= -->
+  <h2 class="sec">💡 หมายเหตุสำคัญ</h2>
+  <table>
+    <tr><th>เรื่อง</th><th>รายละเอียด</th></tr>
+    <tr><td class="dt">🚗 รถ</td><td>RAV4 ขับถนนหลัก+Golden Circle สบาย · ซื้อประกันลด excess + กันหิน/ทราย (Gravel/SAAP) ที่เคาน์เตอร์ · เติมน้ำมันเต็มก่อนคืนรถ 07:00</td></tr>
+    <tr><td class="dt">💧 Blue Lagoon</td><td>จองรอบ 20:00 · 31 ก.ค. ล่วงหน้า (เต็มเร็ว) · หน้าร้อนเปิด 07:00–23:00 · รอบเย็นได้ Best Rate</td></tr>
+    <tr><td class="dt">🅿️ ค่าจอด</td><td>หลายจุดจ่ายผ่านแอป Parka หรือเว็บ · เตรียมบัตรเครดิตมี PIN</td></tr>
+    <tr><td class="dt">🍳 อาหาร</td><td>ซื้อของ Bónus / Krónan ตุนทำกับข้าว ประหยัดกว่ากินร้านเยอะ</td></tr>
+    <tr><td class="dt">🌦️ อากาศ</td><td>ปลาย ก.ค. กลางวันยาวเกือบ 20 ชม. · ~8–15°C ลมแรง เตรียมเสื้อกันลม/กันฝน</td></tr>
+    <tr><td class="dt">🌋 Reykjanes</td><td>โซน Grindavík/Blue Lagoon เคยมีภูเขาไฟปะทุ (2023–24) · เช็ก safetravel.is ก่อนไป เผื่อแผนสำรอง (Sky Lagoon)</td></tr>
+  </table>
+
+  <p class="foot">รวมแผน + รายละเอียดทุกจุดในหน้าเดียว · เปิดออฟไลน์ได้ (ยกเว้นแผนที่ routes กับปุ่มนำทางต้องมีเน็ต)<br>
+  ราคาเป็นค่าประมาณต่อผู้ใหญ่ (100 ISK ≈ 26 บาท มิ.ย. 2026) · เช็กเว็บทางการอีกครั้งก่อนไป</p>
+  <p class="foot" style="font-size:11px;opacity:.72">📷 เครดิตรูป: Secret Lagoon โดย <a href="https://www.flickr.com/photos/89573828@N00/42021353231" target="_blank" rel="noopener" style="color:inherit">kabell</a> (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener" style="color:inherit">CC BY 2.0</a>) · Múlagljúfur โดย <a href="https://commons.wikimedia.org/wiki/File:Mulagljufur.jpg" target="_blank" rel="noopener" style="color:inherit">J24N</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY-SA 4.0</a>)</p>
+
+</div>
+</body>
+</html>
