@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iceland 2026 · Route Map (Shareable)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+<style>
+  /* ===== THEME: Aurora over Fjord — Iceland 2026 ===== */
+  :root{--ink:#15202e;--muted:#5a6675;--line:#dbe6ef;--bg:#eef4f9;
+    --fjord:#0e4258;--glacier:#2c7da0;--teal:#12a594;--aurora:#2fbf87;
+    --blue:#2c7da0;--blueDk:#0e4258;--shadow:0 6px 22px rgba(14,66,88,.10)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,'Noto Sans Thai',sans-serif;
+    color:var(--ink);line-height:1.55;
+    background:linear-gradient(180deg,#e6eff6 0%,#eef4f9 320px) no-repeat,#eef4f9}
+  header{position:relative;color:#eaf6ff;padding:34px 16px 26px;text-align:center;overflow:hidden;
+    background:
+      radial-gradient(130% 95% at 12% -20%,rgba(47,191,135,.50),transparent 55%),
+      radial-gradient(120% 85% at 88% -12%,rgba(18,165,148,.48),transparent 52%),
+      radial-gradient(120% 135% at 50% 145%,rgba(124,111,214,.40),transparent 60%),
+      linear-gradient(165deg,#061826 0%,#0a2e44 48%,#0e4258 100%)}
+  header h1{position:relative;margin:0 0 5px;font-size:22px;font-weight:800;text-shadow:0 2px 16px rgba(0,0,0,.35)}
+  header p{position:relative;margin:0;font-size:13px;opacity:.93}
+  .topnav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:-22px 0 14px;position:relative;z-index:3}
+  .topnav a{font-size:13px;color:var(--fjord);text-decoration:none;border:1px solid rgba(255,255,255,.7);
+    background:rgba(255,255,255,.94);padding:8px 15px;border-radius:999px;font-weight:600;
+    box-shadow:var(--shadow);backdrop-filter:blur(6px)}
+  main{max-width:1150px;margin:0 auto;padding:6px 14px 60px}
+  #map{height:60vh;min-height:420px;width:100%;border:1px solid var(--line);border-radius:16px;
+    box-shadow:var(--shadow);z-index:1}
+  .maptip{font-size:12px;color:var(--muted);text-align:center;margin:8px 0 16px}
+  .days{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:11px}
+  .dcard{background:#fff;border:1px solid var(--line);border-left-width:6px;border-radius:13px;
+    padding:12px 14px;cursor:pointer;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+  .dcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(14,66,88,.16)}
+  .dcard h3{margin:0 0 3px;font-size:15px}
+  .dcard .meta{font-size:12px;color:var(--muted);margin-bottom:5px}
+  .dcard .seq{font-size:12.7px;color:#39414f}
+  .badge{display:inline-block;font-size:11px;background:#e6f2fa;color:var(--fjord);border-radius:999px;
+    padding:2px 9px;margin-right:4px}
+  .leaflet-popup-content{font-family:'Segoe UI',Arial,'Noto Sans Thai',sans-serif;font-size:13px}
+  .navbtn{display:inline-block;margin-top:5px;font-size:11.5px;color:#fff;
+    background:linear-gradient(135deg,#12a594,#2fbf87);padding:4px 11px;border-radius:999px;text-decoration:none;
+    box-shadow:0 3px 10px rgba(18,165,148,.3)}
+</style>
+</head>
+<body>
+<header>
+  <h1>🗺️ Daily Driving Route Map</h1>
+  <p>Open while driving in Iceland · Tap a point to see its name + Navigate button (needs internet)</p>
+</header>
+<main>
+  <div class="topnav">
+    <a href="share-map.html">🇹🇭 ภาษาไทย</a>
+    <a href="share-en.html">🗓️ Plan + Details (Home)</a>
+  </div>
+
+  <div id="map"></div>
+  <div class="maptip">Tap a day card below to zoom to that day's route · Each colored line = one day</div>
+
+  <div class="days" id="dayCards"></div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const P = {
+  KEF:[63.985,-22.605], RVK:[64.1417,-21.9266], THING:[64.2558,-21.1290],
+  GEYSIR:[64.3104,-20.3024], GULL:[64.3271,-20.1199], KERID:[64.0413,-20.8850],
+  HELLA:[63.8333,-20.3900], SELJ:[63.6156,-19.9886], SKOGA:[63.5321,-19.5114],
+  PLANE:[63.4913,-19.3632], SOLJ:[63.5300,-19.3700], DYRH:[63.4006,-19.1283],
+  REYN:[63.4064,-19.0448], VIK:[63.4186,-19.0060], FJAD:[63.7714,-18.1720],
+  HOF:[63.9200,-16.7000], JOKUL:[64.0784,-16.2306], DIAM:[64.0421,-16.1756],
+  SKAFT:[64.0159,-16.9666], MULA:[63.9808,-16.4303], SELFOSS:[63.9333,-20.9970], BRIDGE:[63.8683,-22.6760],
+  GUNNU:[63.8186,-22.6836], REYKV:[63.8118,-22.7080], BRIM:[63.8300,-22.6660],
+  KEFTOWN:[64.0049,-22.5657], BLUE:[63.8804,-22.4495],
+  GRIMS:[64.0500,-20.8700], HVOLS:[63.7533,-20.2236],
+  BORGARNES:[64.5390,-21.9210], GERDU:[64.7793,-22.3535], YTRI:[64.8030,-23.0770],
+  GRUND:[64.9226,-23.2596], KIRKJU:[64.9270,-23.3110],
+  SAXHOLL:[64.8280,-23.9330], DJUPA:[64.7522,-23.8949], LOND:[64.7360,-23.8080],
+  HELLNAR:[64.7500,-23.6430], ARNAR:[64.7680,-23.6210], BUDIR:[64.8220,-23.3850]
+};
+function pt(key,name,th){return {ll:P[key],name,th};}
+
+const DAYS = [
+  {n:1,date:"Fri 24 Jul",color:"#e74c3c",title:"Arrive KEF → Reykjavík",km:"~50 km",time:"~45 min",stopsTxt:"City tour",
+   pts:[pt("KEF","Keflavík Airport","KEF"),pt("RVK","Reykjavík","Reykjavík")]},
+  {n:2,date:"Sat 25 Jul",color:"#e67e22",title:"Golden Circle → Grímsnes",km:"~200 km",time:"~3 hr drive",stopsTxt:"4 stops",
+   pts:[pt("RVK","Reykjavík","Reykjavík"),pt("THING","Þingvellir",""),pt("GEYSIR","Geysir/Strokkur",""),pt("GULL","Gullfoss",""),pt("KERID","Kerið (Optional)",""),pt("GRIMS","Þúfukot · Grímsnes (Stay ✅)","")]},
+  {n:3,date:"Sun 26 Jul",color:"#f1c40f",title:"South Waterfalls + Plane Wreck",km:"~230 km (round trip)",time:"~3.5 hr",stopsTxt:"3–4 stops",
+   pts:[pt("GRIMS","Grímsnes",""),pt("SELJ","Seljalandsfoss",""),pt("SKOGA","Skógafoss",""),pt("PLANE","DC-3 Wreck",""),pt("SOLJ","Sólheimajökull (Optional)",""),pt("GRIMS","Grímsnes (Stay ✅)","")]},
+  {n:4,date:"Mon 27 Jul",color:"#2ecc71",title:"Vík + Puffins → Hvolsvöllur",km:"~340 km",time:"~4.5 hr",stopsTxt:"4 stops",
+   pts:[pt("GRIMS","Grímsnes",""),pt("DYRH","Dyrhólaey 🐧",""),pt("REYN","Reynisfjara",""),pt("VIK","Vík",""),pt("FJAD","Fjaðrárgljúfur",""),pt("HVOLS","Hvolsvöllur (Stay ✅)","")]},
+  {n:5,date:"Tue 28 Jul",color:"#16a085",title:"⭐ Jökulsárlón + Skaftafell",km:"~530 km (round trip)",time:"~6.5 hr, early start!",stopsTxt:"4 stops",
+   pts:[pt("HVOLS","Hvolsvöllur",""),pt("SKAFT","Skaftafell",""),pt("MULA","Múlagljúfur ⭐",""),pt("JOKUL","Jökulsárlón",""),pt("DIAM","Diamond Beach",""),pt("HVOLS","Hvolsvöllur (Stay ✅)","")]},
+  {n:6,date:"Wed 29 Jul",color:"#2980b9",title:"To Snæfellsnes → Kirkjufell",km:"~330 km",time:"~4.5 hr",stopsTxt:"4 stops",
+   pts:[pt("HVOLS","Hvolsvöllur",""),pt("BORGARNES","Borgarnes (midday)",""),pt("GERDU","Gerðuberg",""),pt("YTRI","Ytri Tunga 🦭",""),pt("KIRKJU","Kirkjufell evening ⭐",""),pt("GRUND","Saból · Grundarfjörður (Stay ✅)","")]},
+  {n:7,date:"Thu 30 Jul",color:"#8e44ad",title:"Around Snæfellsjökull → Keflavík",km:"~360 km",time:"~4.5 hr",stopsTxt:"6 stops",
+   pts:[pt("GRUND","Grundarfjörður",""),pt("SAXHOLL","Saxhóll Crater",""),pt("DJUPA","Djúpalónssandur ⭐",""),pt("LOND","Lóndrangar",""),pt("HELLNAR","Hellnar (midday)",""),pt("ARNAR","Arnarstapi cliff walk ⭐",""),pt("BUDIR","Búðakirkja",""),pt("KEFTOWN","Keflavík (Stay ⏳)","")]},
+  {n:8,date:"Fri 31 Jul",color:"#e91e63",title:"Reykjanes + Blue Lagoon",km:"~90 km",time:"~1.5 hr",stopsTxt:"6 stops",
+   pts:[pt("KEFTOWN","Keflavík",""),pt("BRIDGE","Bridge Between Continents",""),pt("GUNNU","Gunnuhver",""),pt("REYKV","Reykjanes Lighthouse",""),pt("BRIM","Brimketill",""),pt("BLUE","Blue Lagoon 20:00",""),pt("KEFTOWN","Keflavík (Stay)","")]}
+];
+
+const map = L.map('map',{scrollWheelZoom:true}).setView([64.05,-19.6],7);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  maxZoom:17, attribution:'© OpenStreetMap'}).addTo(map);
+
+const dayLayers = {};
+const allBounds = [];
+DAYS.forEach(d=>{
+  const grp = L.layerGroup().addTo(map);
+  const latlngs = d.pts.map(p=>p.ll);
+  L.polyline(latlngs,{color:d.color,weight:4,opacity:.85}).addTo(grp);
+  d.pts.forEach((p,i)=>{
+    const nav=`https://www.google.com/maps/dir/?api=1&destination=${p.ll[0]},${p.ll[1]}`;
+    const mk=L.circleMarker(p.ll,{radius:7,color:'#fff',weight:2,fillColor:d.color,fillOpacity:1}).addTo(grp);
+    mk.bindPopup(`<b>Day ${d.n} · Stop ${i+1}</b><br><b>${p.name}</b><br><span style="color:#2f6fb0">${p.th}</span><br><a class="navbtn" href="${nav}" target="_blank">🧭 Navigate (Google Maps)</a>`);
+    allBounds.push(p.ll);
+  });
+  dayLayers[d.n]=grp;
+});
+map.fitBounds(allBounds,{padding:[30,30]});
+
+// day cards
+const cards = document.getElementById('dayCards');
+DAYS.forEach(d=>{
+  const seq = d.pts.map(p=>p.name).join(' → ');
+  const el=document.createElement('div');
+  el.className='dcard'; el.style.borderLeftColor=d.color;
+  el.innerHTML=`<h3>Day ${d.n} · ${d.date}</h3>
+    <div class="meta"><span class="badge" style="background:${d.color}22;color:${d.color}">${d.title}</span></div>
+    <div class="meta">🚗 ${d.km} · ⏱️ ${d.time} · 📍 ${d.stopsTxt}</div>
+    <div class="seq">${seq}</div>`;
+  el.onclick=()=>{ map.fitBounds(d.pts.map(p=>p.ll),{padding:[40,40]}); window.scrollTo({top:0,behavior:'smooth'}); };
+  cards.appendChild(el);
+});
+</script>
+</body>
+</html>

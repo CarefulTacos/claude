@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iceland 2026 · Itinerary + Accommodations (Shareable)</title>
+<style>
+  /* ===== THEME: Aurora over Fjord — Iceland 2026 ===== */
+  :root{
+    --ink:#15202e; --muted:#5a6675; --line:#dbe6ef; --card:#ffffff; --bg:#eef4f9;
+    --fjord:#0e4258; --fjordDk:#0a2e44; --glacier:#2c7da0; --glacierLt:#4a9fc4;
+    --teal:#12a594; --aurora:#2fbf87; --amber:#b45309; --purple:#7c6fd6;
+    --blue:#2c7da0; --blueDk:#0e4258; --green:#0d7a63;
+    --shadow:0 6px 22px rgba(14,66,88,.10);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Arial,'Noto Sans Thai',sans-serif;
+       color:var(--ink);line-height:1.62;-webkit-font-smoothing:antialiased;
+       background:linear-gradient(180deg,#e6eff6 0%,#eef4f9 320px) no-repeat,#eef4f9}
+  .wrap{max-width:900px;margin:0 auto;padding:0 15px 80px}
+  /* ---- HEADER: aurora sky over deep fjord ---- */
+  header{position:relative;color:#eaf6ff;padding:52px 20px 58px;text-align:center;overflow:hidden;
+    background:
+      radial-gradient(130% 95% at 12% -20%,rgba(47,191,135,.55),transparent 55%),
+      radial-gradient(120% 85% at 88% -12%,rgba(18,165,148,.50),transparent 52%),
+      radial-gradient(120% 135% at 50% 135%,rgba(124,111,214,.42),transparent 60%),
+      linear-gradient(165deg,#061826 0%,#0a2e44 48%,#0e4258 100%)}
+  header h1{position:relative;margin:0 0 10px;font-size:27px;font-weight:800;letter-spacing:.3px;
+    text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  header p{position:relative;margin:3px 0;font-size:14px;opacity:.94}
+  .topnav{display:flex;gap:9px;justify-content:center;flex-wrap:wrap;margin:-28px 0 20px;position:relative;z-index:3}
+  .topnav a{font-size:13px;color:var(--fjord);text-decoration:none;border:1px solid rgba(255,255,255,.7);
+    background:rgba(255,255,255,.94);padding:8px 15px;border-radius:999px;font-weight:600;
+    box-shadow:var(--shadow);backdrop-filter:blur(6px);transition:transform .12s,box-shadow .12s}
+  .topnav a:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(14,66,88,.18)}
+  /* ---- callouts ---- */
+  .rate{background:linear-gradient(135deg,#fff6e9,#fdeede);border:1px solid #f0cf9a;border-radius:14px;
+    padding:13px 17px;margin:18px 0;font-size:13.3px;box-shadow:var(--shadow)}
+  .rate b{color:var(--amber)}
+  .ok{background:linear-gradient(135deg,#e9f7f0,#e0f3ee);border:1px solid #9fded0;border-radius:14px;
+    padding:15px 17px;margin:18px 0;font-size:13.5px;box-shadow:var(--shadow)}
+  .ok h3{margin:0 0 7px;color:var(--green);font-size:15px}
+  .ok ul{margin:4px 0 0;padding-left:18px}
+  /* ---- table ---- */
+  table{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border-radius:16px;
+    overflow:hidden;box-shadow:var(--shadow);font-size:13.5px;margin:14px 0;border:1px solid var(--line)}
+  th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:linear-gradient(180deg,#eaf3fa,#e3eef7);font-weight:700;color:var(--fjord);letter-spacing:.2px}
+  tr:last-child td{border-bottom:none}
+  table tr:hover td{background:#f5fafd}
+  .dt{font-weight:800;color:var(--fjord);white-space:nowrap}
+  /* ---- day header bar ---- */
+  .daybar{position:relative;color:#eaf6ff;border-radius:18px;padding:17px 20px;margin:34px 0 12px;overflow:hidden;
+    background:radial-gradient(120% 140% at 90% -30%,rgba(47,191,135,.35),transparent 55%),
+      linear-gradient(135deg,#0a2e44,#12557a);box-shadow:0 10px 28px rgba(10,46,68,.28)}
+  .daybar::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+    background:linear-gradient(180deg,#2fbf87,#12a594,#7c6fd6)}
+  .daybar h2{margin:0;font-size:19px;font-weight:800;letter-spacing:.2px}
+  .daybar .sub{font-size:13px;opacity:.9;margin-top:4px}
+  .daybar .tags{margin-top:10px;display:flex;gap:7px;flex-wrap:wrap}
+  .daybar .tag{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.14);
+    padding:4px 11px;border-radius:999px;font-size:12px}
+  /* ---- stop card ---- */
+  .stop{display:flex;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:12px;margin:12px 0;box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+  .stop:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(14,66,88,.14)}
+  .thumb{position:relative;flex:0 0 132px;width:132px;height:112px;border-radius:12px;overflow:hidden;
+    background:#dfe9f2;display:flex;align-items:center;justify-content:center}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+  .stop:hover .thumb img{transform:scale(1.05)}
+  .thumb .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .thumb.ic{flex-direction:column;color:#fff;text-align:center;padding:6px}
+  .thumb.ic .em{font-size:40px;line-height:1}
+  .thumb.ic small{font-size:10.5px;font-weight:600;margin-top:5px;opacity:.95}
+  .g1{background:linear-gradient(135deg,#2c7da0,#4a9fc4)}
+  .g2{background:linear-gradient(135deg,#0a2e44,#12557a)}
+  .g3{background:linear-gradient(135deg,#12a594,#2fbf87)}
+  .g4{background:linear-gradient(135deg,#6a5acd,#9b8ce0)}
+  .g5{background:linear-gradient(135deg,#b45309,#e0954a)}
+  .g6{background:linear-gradient(135deg,#334e68,#5a7896)}
+  .info{flex:1;min-width:0}
+  .info h4{margin:0 0 7px;font-size:15.5px;color:#16202e}
+  .rd{color:var(--glacier);font-weight:600;font-size:12.5px}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .b{font-size:11.5px;padding:4px 10px;border-radius:999px;font-weight:600}
+  .b.time{background:#e6f2fa;color:#0e4258}
+  .b.cost{background:#fbeadd;color:#b45309}
+  .b.free{background:#e2f5ec;color:#0d7a63}
+  .b.opt{background:#efecfb;color:#6a5acd}
+  .info p{margin:0 0 9px;font-size:13.3px;color:#3a4453}
+  .nav{display:inline-block;font-size:12px;font-weight:700;color:#fff;
+    background:linear-gradient(135deg,#12a594,#2fbf87);padding:6px 14px;border-radius:999px;text-decoration:none;
+    box-shadow:0 4px 12px rgba(18,165,148,.32);transition:transform .12s,box-shadow .12s}
+  .nav:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(18,165,148,.42)}
+  .sleep{background:linear-gradient(135deg,#e9f7f0,#e0f3ee);border:1px solid #a7e0d1;border-radius:12px;
+    padding:9px 14px;margin:8px 0 2px;font-size:13.3px;color:#0d7a63;font-weight:600}
+  /* ---- section + accommodations ---- */
+  h2.sec{font-size:21px;margin:40px 0 14px;padding-bottom:10px;position:relative;color:#16202e}
+  h2.sec::after{content:"";position:absolute;left:0;bottom:0;width:74px;height:3px;border-radius:3px;
+    background:linear-gradient(90deg,#2fbf87,#12a594,#7c6fd6)}
+  .acc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;
+    margin-bottom:13px;box-shadow:var(--shadow)}
+  .acc .accphoto{width:100%;max-height:240px;object-fit:cover;border-radius:12px;margin:9px 0 5px;display:block}
+  .acc h4{margin:0 0 5px;font-size:15.5px;color:var(--fjord)}
+  .acc .price{font-size:13px;color:var(--teal);font-weight:700}
+  .acc ul{margin:8px 0 0;padding-left:18px;font-size:13.2px;color:var(--muted)}
+  .foot{text-align:center;color:var(--muted);font-size:12.3px;margin-top:28px}
+  @media(max-width:520px){.stop{flex-direction:column}.thumb{width:100%;flex-basis:auto;height:200px}
+    header{padding:42px 16px 50px}header h1{font-size:23px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>🇮🇸 Iceland Trip 2026 — Plan + Details for Every Stop</h1>
+  <p>Golden Circle + South Coast + Jökulsárlón + Snæfellsnes · 24 Jul–1 Aug 2026 · 8 nights · 3 people</p>
+  <p>Works offline · Photos · THB prices · Suggested visit times · Navigate buttons</p>
+</header>
+<div style="max-width:900px;margin:14px auto 0;padding:0 15px"><div class="rate" style="background:linear-gradient(135deg,#e9f7f0,#e0f3ee);border-color:#a7e0d1">📋 <b>Shareable trip plan</b> — copy this 8-day itinerary + accommodations for your own planning <span style="opacity:.75">(personal details removed)</span></div></div>
+<div class="wrap">
+
+  <div class="topnav">
+    <a href="share.html">🇹🇭 ภาษาไทย</a>
+    <a href="share-map-en.html">🗺️ Daily Route Map</a>
+    <a href="#acc-sec">🏠 All Accommodations</a>
+  </div>
+
+  <div class="rate">
+    💱 <b>Rate used: 100 ISK ≈ 26 THB</b> (Jun 2026, may fluctuate) · 🎟️ Most nature sites are <b>free entry</b> — main costs are parking/spa/boat tours · Prices are per adult; double-check official websites
+  </div>
+
+  <div class="ok">
+    <h3>✅ Confirmed from bookings (correct dates)</h3>
+    <ul>
+      <li>✈️ Arrive KEF <b>07:50 · Fri 24 Jul</b> · Return flight <b>08:40 · Sat 1 Aug 2026</b></li>
+      <li>🚗 Toyota RAV4 · Pick up <b>24 Jul 09:00</b> · Return <b>1 Aug 07:00</b> at KEF · ⚠️ Return the car and check in quickly (~1 hr 40 min left)</li>
+    </ul>
+  </div>
+
+  <!-- ================= FLIGHTS ================= -->
+  <h2 class="sec">✈️ Flights — Finnair (via Helsinki)</h2>
+  <div class="rate">🎫 <b>Finnair</b> via Helsinki · 3 passengers · Economy · checked bag 23 kg/person + carry-on (carry-on + personal item ≤ 8 kg total, 55×40×23 cm)</div>
+
+  <div class="acc">
+    <h4>🛫 Outbound · Bangkok → Reykjavík</h4>
+    <table>
+      <tr><th>Flight</th><th>Departs</th><th>Arrives</th></tr>
+      <tr><td class="dt">Finnair AY142<br><span class="rd">A350-900</span></td><td>🇹🇭 <b>BKK 07:05</b><br>Thu 23 Jul</td><td>🇫🇮 <b>HEL 15:25</b><br>Thu 23 Jul</td></tr>
+      <tr><td colspan="3" style="background:#fff6e9;color:#8a5a12;font-size:12.5px">⏳ Layover in Helsinki <b>15 hr 45 min</b> — overnight, can explore the city/rest</td></tr>
+      <tr><td class="dt">Finnair AY991<br><span class="rd">737-800</span></td><td>🇫🇮 <b>HEL 07:10</b><br>Fri 24 Jul</td><td>🇮🇸 <b>KEF 07:50</b><br>Fri 24 Jul</td></tr>
+    </table>
+    <div class="sleep">🚗 Land 07:50 → pick up Hertz car 09:00 at KEF right on time → start the trip!</div>
+  </div>
+
+  <div class="acc">
+    <h4>🛬 Return · Reykjavík → Bangkok</h4>
+    <table>
+      <tr><th>Flight</th><th>Departs</th><th>Arrives</th></tr>
+      <tr><td class="dt">Finnair AY992<br><span class="rd">737-800</span></td><td>🇮🇸 <b>KEF 08:40</b><br>Sat 1 Aug</td><td>🇫🇮 <b>HEL 15:05</b><br>Sat 1 Aug</td></tr>
+      <tr><td colspan="3" style="background:#fff6e9;color:#8a5a12;font-size:12.5px">⏳ Layover in Helsinki <b>23 hr 10 min</b> — overnight, almost a full day to explore Helsinki 🇫🇮</td></tr>
+      <tr><td class="dt">Finnair AY141<br><span class="rd">A350-900</span></td><td>🇫🇮 <b>HEL 14:15</b><br>Sun 2 Aug</td><td>🇹🇭 <b>BKK 05:30</b><br>Mon 3 Aug</td></tr>
+    </table>
+    <div class="sleep">🚗 Return Hertz car 07:00 → flight check-in 08:40 · ⚠️ Overnight in Helsinki 1 night (2 Aug), arrive Thailand morning of 3 Aug</div>
+  </div>
+
+  <table>
+    <tr><th>Night</th><th>Date</th><th>Stay at</th></tr>
+    <tr><td>1</td><td class="dt">Fri 24 Jul</td><td>Reykjavík</td></tr>
+    <tr><td>2–3</td><td class="dt">Sat–Sun 25–26 Jul</td><td>Golden Circle (Grímsnes) ✅ Booked</td></tr>
+    <tr><td>4–5</td><td class="dt">Mon–Tue 27–28 Jul</td><td>Hvolsvöllur ✅ Booked</td></tr>
+    <tr><td>6</td><td class="dt">Wed 29 Jul</td><td>Grundarfjörður (Kirkjufell) ✅ Booked</td></tr>
+    <tr><td>7–8</td><td class="dt">Thu–Fri 30–31 Jul</td><td>Keflavík · Rokkheimur Studio ✅ Booked</td></tr>
+    <tr><td>—</td><td class="dt">Sat 1 Aug</td><td>✈️ Return car 07:00 · Fly 08:40</td></tr>
+  </table>
+
+  <!-- ================= DAY 1 ================= -->
+  <div class="daybar">
+    <h2>Day 1 · Fri 24 Jul — Reykjavík</h2>
+    <div class="sub">Land 07:50 → pick up car 09:00 → into the city · take it easy on day one</div>
+    <div class="tags"><span class="tag">🚗 KEF→city ~45 min</span><span class="tag">🛏️ Stay Reykjavík</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#cfe3f5"/><rect y="88" width="132" height="24" fill="#8caa82"/><polygon points="66,12 75,40 57,40" fill="#fff"/><rect x="57" y="40" width="18" height="48" fill="#fff"/><polygon points="57,52 48,62 48,88 57,88" fill="#edf1f5"/><polygon points="75,52 84,62 84,88 75,88" fill="#edf1f5"/><polygon points="48,64 40,74 40,88 48,88" fill="#dbe3ea"/><polygon points="84,64 92,74 92,88 84,88" fill="#dbe3ea"/><rect x="63" y="68" width="6" height="20" fill="#b7c2cd"/><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Hallgrímskirkja</text></svg><img class="ph" src="images/hallgrimskirkja.jpg" alt="Hallgrímskirkja" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Hallgrímskirkja</h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 min</span><span class="b free">💰 Free entry</span><span class="b cost">🔭 Tower ~365 THB</span></div>
+      <p>The city's landmark towering church, shaped like basalt columns. Take the elevator up the tower for 360° views of the colorful rooftops + the bay</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1417,-21.9266" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_sunvoyager.jpg" alt="Sun Voyager"></div>
+    <div class="info">
+      <h4>Sun Voyager</h4>
+      <div class="badges"><span class="b time">⏱️ 15–20 min</span><span class="b free">💰 Free</span></div>
+      <p>A stainless-steel Viking-ship sculpture by the sea, a classic photo spot with Mt Esja as a backdrop, beautiful in the evening light</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1476,-21.9224" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_harpa.jpg" alt="Harpa"></div>
+    <div class="info">
+      <h4>Harpa Concert Hall</h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 min</span><span class="b free">💰 Free lobby entry</span></div>
+      <p>A concert hall with a colorful honeycomb glass facade; wander the interior lobby for free, right by the old harbor</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1505,-21.9327" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#dbe6f0"/><rect y="86" width="132" height="26" fill="#9a9a9a"/><rect x="8" y="50" width="24" height="36" fill="#e07a5f"/><rect x="34" y="44" width="24" height="42" fill="#81b29a"/><rect x="60" y="52" width="24" height="34" fill="#f2cc8f"/><rect x="86" y="46" width="24" height="40" fill="#6d9dc5"/><g fill="#3a3a3a" opacity=".45"><rect x="16" y="70" width="8" height="16"/><rect x="42" y="70" width="8" height="16"/><rect x="68" y="70" width="8" height="16"/><rect x="94" y="70" width="8" height="16"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Laugavegur</text></svg><img class="ph" src="images/laugavegur.jpg" alt="Laugavegur" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Laugavegur Street + Rainbow Street</h4>
+      <div class="badges"><span class="b time">⏱️ 60–90 min</span><span class="b free">💰 Free (shop/coffee as you like)</span></div>
+      <p>The main pedestrian street with souvenir shops and cafés; from the end of Rainbow Street you look straight at Hallgrímskirkja · stop by the Bónus supermarket for groceries</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1432,-21.9256" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_perlan.jpg" alt="Perlan"></div>
+    <div class="info">
+      <h4>Perlan — Optional</h4>
+      <div class="badges"><span class="b opt">Optional</span><span class="b time">⏱️ 1.5–2 hr</span><span class="b cost">💰 ~1,560 THB</span></div>
+      <p>Natural-history museum: a man-made ice cave, a northern-lights planetarium, volcanoes + a 360° rooftop city viewpoint</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1290,-21.9190" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <!-- ================= DAY 2 ================= -->
+  <div class="daybar">
+    <h2>Day 2 · Sat 25 Jul — Golden Circle → Grímsnes</h2>
+    <div class="sub">3 classic highlights, then drive south</div>
+    <div class="tags"><span class="tag">🚗 Total ~3 hr</span><span class="tag">📍 4 stops</span><span class="tag">🛏️ Stay Grímsnes (Þúfukot)</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day2_thingvellir.jpg" alt="Thingvellir"></div>
+    <div class="info">
+      <h4>Þingvellir National Park</h4>
+      <div class="badges"><span class="b time">⏱️ 60–90 min</span><span class="b free">💰 Free entry</span><span class="b cost">🅿️ Parking ~260 THB</span></div>
+      <p>The rift between the North American and Eurasian plates; walk the Almannagjá gorge + the birthplace of the world's first parliament. A World Heritage Site</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.2558,-21.1290" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day2_strokkur.jpg" alt="Strokkur"></div>
+    <div class="info">
+      <h4>Geysir · Strokkur</h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 min</span><span class="b free">💰 Free</span></div>
+      <p>The Strokkur hot spring erupts 15–20 m high every ~5–10 min — set up your camera and wait</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.3104,-20.3024" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day2_gullfoss.jpg" alt="Gullfoss"></div>
+    <div class="info">
+      <h4>Gullfoss Waterfall</h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 min</span><span class="b free">💰 Free (free parking)</span></div>
+      <p>A giant two-tier waterfall with immense power, with walkways on several levels + a café (famous lamb soup)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.3271,-20.1199" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day2_kerid.jpg" alt="Kerid"></div>
+    <div class="info">
+      <h4>Kerið Volcanic Crater — Optional</h4>
+      <div class="badges"><span class="b opt">Optional</span><span class="b time">⏱️ 30 min</span><span class="b cost">💰 ~180 THB</span></div>
+      <p>A volcanic crater with a turquoise-blue lake at its bottom and rust-red rims; you can walk around the rim. It's on the route south</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0413,-20.8850" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#bcd6cf"/><rect y="64" width="132" height="48" fill="#5aa6a0"/><ellipse cx="66" cy="70" rx="60" ry="12" fill="#7cc0b8"/><g fill="#fff" opacity=".7"><ellipse cx="50" cy="50" rx="10" ry="14"/><ellipse cx="78" cy="46" rx="8" ry="12"/><ellipse cx="64" cy="52" rx="7" ry="10"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Secret Lagoon</text></svg><img class="ph" src="images/secretlagoon.jpg" alt="Secret Lagoon" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Secret Lagoon — Optional</h4>
+      <div class="badges"><span class="b opt">Optional</span><span class="b time">⏱️ 1.5–2 hr</span><span class="b cost">💰 ~780 THB</span></div>
+      <p>Iceland's oldest natural hot spring, far cheaper than the Blue Lagoon, with a laid-back rustic vibe at Flúðir</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.1378,-20.3097" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ Stay: Þúfukot · Grímsnes (night 1/2) — kitchen available to cook</div>
+
+  <!-- ================= DAY 3 ================= -->
+  <div class="daybar">
+    <h2>Day 3 · Sun 26 Jul — South Waterfalls + Plane Wreck</h2>
+    <div class="sub">Based near Hella · short round-trip drives</div>
+    <div class="tags"><span class="tag">🚗 Total ~3.5 hr (from Grímsnes)</span><span class="tag">📍 3–4 stops</span><span class="tag">🛏️ Stay Grímsnes</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_seljalandsfoss.jpg" alt="Seljalandsfoss"></div>
+    <div class="info">
+      <h4>Seljalandsfoss Waterfall</h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 min</span><span class="b free">💰 Free entry</span><span class="b cost">🅿️ Parking ~210 THB</span></div>
+      <p>You can <b>walk behind the waterfall's curtain</b> (slippery path, bring a rain jacket) + a ~5-min walk along the cliff reaches the hidden Gljúfrabúi waterfall tucked in a rock crevice</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.6156,-19.9886" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_skogafoss.jpg" alt="Skogafoss"></div>
+    <div class="info">
+      <h4>Skógafoss Waterfall</h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 min</span><span class="b free">💰 Free</span></div>
+      <p>A waterfall 25 m wide and 60 m tall; you can walk right up (often with a rainbow) or climb ~370 steps to the upper viewpoint</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.5321,-19.5114" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#39424e"/><rect y="72" width="132" height="40" fill="#2a2e35"/><ellipse cx="66" cy="72" rx="72" ry="8" fill="#232830"/><g fill="#dfe6ec"><rect x="40" y="50" width="46" height="13" rx="4"/><polygon points="86,51 106,55 106,61 86,62"/><rect x="55" y="43" width="14" height="9" rx="2"/><polygon points="44,50 34,42 41,50"/><polygon points="48,63 40,74 46,74 54,63"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">DC-3 Wreck</text></svg><img class="ph" src="images/planewreck.jpg" alt="Solheimasandur DC-3" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Sólheimasandur DC-3 Plane Wreck</h4>
+      <div class="badges"><span class="b time">⏱️ 1.5–2.5 hr</span><span class="b cost">🅿️ Parking ~195 THB</span><span class="b cost">🚌 Shuttle ~885 THB</span></div>
+      <p>A US military plane that crashed in 1973 on an open black-sand beach, a super-cool photo spot (a 2nd plane was added in 2025) · <b>Recommend taking the shuttle</b> (every ~30 min, 10:00–16:30) instead of walking ~4 km each way</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.4913,-19.3632" target="_blank">🧭 Navigate (parking lot)</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_solheimajokull.jpg" alt="Solheimajokull"></div>
+    <div class="info">
+      <h4>Sólheimajökull Glacier — Optional</h4>
+      <div class="badges"><span class="b opt">Optional</span><span class="b time">⏱️ 45–60 min</span><span class="b cost">🅿️ Parking ~195 THB</span></div>
+      <p>An easily accessible glacier tongue; a ~15–20 min walk from the parking lot to the viewpoint (don't walk onto the ice without a guide)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.5300,-19.3700" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ Stay: Þúfukot · Grímsnes (night 2/2)</div>
+
+  <!-- ================= DAY 4 ================= -->
+  <div class="daybar">
+    <h2>Day 4 · Mon 27 Jul — Vík + Puffins → Hvolsvöllur</h2>
+    <div class="sub">Explore the Vík area, then drive east</div>
+    <div class="tags"><span class="tag">🚗 Total ~3.5 hr</span><span class="tag">📍 4 stops</span><span class="tag">🛏️ Stay Hvolsvöllur</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_dyrholaey.jpg" alt="Dyrholaey"></div>
+    <div class="info">
+      <h4>🐧 Dyrhólaey — Puffin Viewpoint</h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 min</span><span class="b free">💰 Free</span></div>
+      <p>A natural rock arch headland + <b>the best land-based puffin viewpoint on the south coast</b> (late Jul still catches the tail end of the season); most visible early morning/evening · bring binoculars + a windbreaker</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.4006,-19.1283" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_reynisfjara.jpg" alt="Reynisfjara"></div>
+    <div class="info">
+      <h4>Reynisfjara Black-Sand Beach</h4>
+      <div class="badges"><span class="b time">⏱️ 45 min</span><span class="b free">💰 Free (small parking fee)</span></div>
+      <p>Black-sand beach, hexagonal basalt columns, a rock cave + the Reynisdrangar sea stacks · ⚠️ <b>Beware of sneaker waves</b> — don't stand near the water</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.4064,-19.0448" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day3_vik.jpg" alt="Vik"></div>
+    <div class="info">
+      <h4>Vík Village</h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 min</span><span class="b free">💰 Free (meal stop)</span></div>
+      <p>The southernmost little village, with a red church on a scenic hill, a supermarket (Krónan), gas station, and restaurants — a perfect lunch stop</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.4186,-19.0060" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day4_fjadrargljufur.jpg" alt="Fjadrargljufur"></div>
+    <div class="info">
+      <h4>Fjaðrárgljúfur Canyon</h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 min</span><span class="b free">💰 Free</span></div>
+      <p>A winding canyon ~100 m deep with moss-covered walls; a cliffside path leads to several viewpoints. It's before Hof</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.7714,-18.1720" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ Stay: Hamar – Puffin 1 · Hvolsvöllur (night 1/2) — ⚠️ ~1.5 hr drive back from Fjaðrárgljúfur</div>
+
+  <!-- ================= DAY 5 ================= -->
+  <div class="daybar">
+    <h2>Day 5 · Tue 28 Jul — ⭐ Jökulsárlón + Skaftafell</h2>
+    <div class="sub">Trip highlight · round trip from Hvolsvöllur · the longest driving day — leave before 08:00</div>
+    <div class="tags"><span class="tag">🚗 Total ~6.5 hr (round trip from Hvolsvöllur)</span><span class="tag">📍 4 stops</span><span class="tag">🛏️ Stay Hvolsvöllur</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day4_jokulsarlon.jpg" alt="Jokulsarlon"></div>
+    <div class="info">
+      <h4>⭐ Jökulsárlón Glacier Lagoon</h4>
+      <div class="badges"><span class="b time">⏱️ Visit 45–60 min</span><span class="b free">💰 Free to view</span><span class="b cost">🚤 Boat tour ~1,850 THB</span></div>
+      <p>A lagoon with floating icebergs, sometimes with seals · <b>Boat tour (optional)</b>: amphibious ~ISK 7,100 (~1,850 THB) / Zodiac ~ISK 11,900+ (~3,100 THB) — book ahead</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0784,-16.2306" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day4_diamondbeach.jpg" alt="Diamond Beach"></div>
+    <div class="info">
+      <h4>Diamond Beach</h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 min</span><span class="b free">💰 Free</span></div>
+      <p>Clear ice chunks strewn across the black-sand beach, glittering like diamonds; across the road from Jökulsárlón, within walking distance</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0421,-16.1756" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day4_svartifoss.jpg" alt="Svartifoss"></div>
+    <div class="info">
+      <h4>Skaftafell + Svartifoss Waterfall</h4>
+      <div class="badges"><span class="b time">⏱️ 2–2.5 hr (hike)</span><span class="b free">💰 Free entry</span><span class="b cost">🅿️ Parking ~270 THB</span></div>
+      <p>A ~1.5 km trail (uphill) to Svartifoss waterfall, framed by black basalt columns like organ pipes (parking is 50% off if you paid at Jökulsárlón the same day)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0159,-16.9666" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/mulagljufur.jpg" alt="Múlagljúfur Canyon"></div>
+    <div class="info">
+      <h4>⭐ Múlagljúfur Canyon <span class="rd">New spot! 📸</span></h4>
+      <div class="badges"><span class="b time">⏱️ 1.5–2 hr (hike)</span><span class="b free">💰 Free entry</span><span class="b opt">Optional</span></div>
+      <p>A stunning hidden canyon, moss-green throughout, with <b>Hangandifoss</b> waterfall plunging into the gorge and views opening onto the sea/glacier 🏔️ · uphill trail ~1.5 km each way (dirt path can be muddy, wear non-slip shoes) · it's <b>right off the road between Skaftafell ↔ Jökulsárlón</b>, a short turn onto a gravel road with no detour · in summer the sky stays bright until midnight, so evening visits have fewer people</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.9808,-16.4303" target="_blank">🧭 Navigate (parking spot)</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ Stay: Hamar – Puffin 1 · Hvolsvöllur (night 2/2) — ⚠️ the longest driving day of the trip; leave early (≤08:00), return in the evening</div>
+
+  <!-- ================= DAY 6 ================= -->
+  <div class="daybar">
+    <h2>Day 6 · Wed 29 Jul — Drive to Snæfellsnes → Kirkjufell</h2>
+    <div class="sub">Check out before 11:00 · long drive ~330 km (~4.5 hr) with stops along the way · shoot Kirkjufell in the golden evening light</div>
+    <div class="tags"><span class="tag">🚗 Total ~4.5 hr</span><span class="tag">📍 4 stops</span><span class="tag">🛏️ Stay Grundarfjörður ✅</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#cfe0ec"/><rect y="78" width="132" height="34" fill="#7f9e73"/><path d="M0,78 Q40,66 80,78 T132,74 V112 H0Z" fill="#5a97c2"/><rect x="30" y="58" width="18" height="18" fill="#e8ac5e"/><polygon points="30,58 39,48 48,58" fill="#c0392b"/><rect x="62" y="54" width="20" height="22" fill="#eee"/><polygon points="62,54 72,44 82,54" fill="#3f6d8e"/><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Borgarnes</text></svg><img class="ph" src="images/borgarnes.jpg" alt="Borgarnes" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Rest stop: Borgarnes</h4>
+      <div class="badges"><span class="b time">⏱️ 45–60 min · ~midday</span><span class="b free">💰 Free (food as you like)</span></div>
+      <p>A fjord-side town, the gateway to the west · have lunch + grab groceries at Bónus/Netto (the last big supermarket before entering the peninsula)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.5390,-21.9210" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/gerduberg.jpg" alt="Gerduberg"></div>
+    <div class="info">
+      <h4>Gerðuberg</h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 min</span><span class="b free">💰 Free</span></div>
+      <p>A wall of hexagonal basalt columns lined up for a kilometer, as if man-made; park by the road and walk right to the base</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7793,-22.3535" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/ytritunga.jpg" alt="Ytri Tunga seals"></div>
+    <div class="info">
+      <h4>🦭 Ytri Tunga — Seal Beach</h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 min</span><span class="b cost">🅿️ ~200 THB/car</span></div>
+      <p>A golden-sand beach where harbor seals like to bask on the rocks; very high chance of spotting them in summer, bring a zoom lens · don't approach closer than 50 m</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.8030,-23.0770" target="_blank">🧭 Navigate</a>
+    </div></div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day8_kirkjufell.jpg" alt="Kirkjufell"></div>
+    <div class="info">
+      <h4>⭐ Evening: Kirkjufell + Kirkjufellsfoss</h4>
+      <div class="badges"><span class="b time">⏱️ 1–1.5 hr · best light 20:00–22:00</span><span class="b cost">🅿️ ~180 THB/car</span></div>
+      <p>The witch's-hat mountain, the most photographed in Iceland (Game of Thrones) + the waterfall in front makes the classic scene · only ~5 min from the accommodation; sunset ~22:40, no need to rush</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.9270,-23.3110" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ Stay: Saból 2 – Kirkjufell Cottage · Grundarfjörður — private hot tub, check-in 15:00 (lockbox)</div>
+
+  <!-- ================= DAY 7 ================= -->
+  <div class="daybar">
+    <h2>Day 7 · Thu 30 Jul — Around Snæfellsjökull Park → Keflavík</h2>
+    <div class="sub">Check out before 11:00 · loop the tip of the peninsula for 6 stops, then drive into Keflavík in the evening (~2 hr 45 min)</div>
+    <div class="tags"><span class="tag">🚗 Total ~360 km / drive ~4.5 hr</span><span class="tag">📍 6 stops</span><span class="tag">🛏️ Stay Keflavík ✅ Booked</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/saxholl.jpg" alt="Saxholl crater"></div>
+    <div class="info">
+      <h4>Saxhóll Crater</h4>
+      <div class="badges"><span class="b time">⏱️ 30 min</span><span class="b free">💰 Free</span></div>
+      <p>A 3,000–4,000-year-old volcanic crater with a metal staircase to the rim ~10 min; 360° views over the lava fields</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.8280,-23.9330" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day9_djupalonssandur.jpg" alt="Djupalonssandur"></div>
+    <div class="info">
+      <h4>⭐ Djúpalónssandur</h4>
+      <div class="badges"><span class="b time">⏱️ 1–1.5 hr</span><span class="b free">💰 Free</span></div>
+      <p>A beach of smooth round black pebbles ("black pearls") + the scattered wreckage of a 1948 British fishing trawler + 4 lifting stones once used by old-time sailors (23–154 kg, give them a try!) · strong waves, no swimming</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7522,-23.8949" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day9_londrangar.jpg" alt="Londrangar"></div>
+    <div class="info">
+      <h4>Lóndrangar</h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 min</span><span class="b free">💰 Free</span></div>
+      <p>A pair of 75 m volcanic rock pinnacles rising from the sea cliffs; 5-min walk from the parking lot to the viewpoint, cliffs full of nesting seabirds</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7360,-23.8080" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/hellnar.jpg" alt="Hellnar"></div>
+    <div class="info">
+      <h4>Midday: Hellnar — Bayside Café</h4>
+      <div class="badges"><span class="b time">⏱️ ~1 hr</span><span class="b cost">💰 Fish soup ~650 THB</span></div>
+      <p>An old fishing village beneath the Snæfellsjökull glacier · have lunch at Fjöruhúsið, a bayside café famous for its fish soup, with views of the Valasnös cliffs</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7500,-23.6430" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day9_arnarstapi.jpg" alt="Arnarstapi Gatklettur"></div>
+    <div class="info">
+      <h4>⭐ Cliff walk: Hellnar → Arnarstapi</h4>
+      <div class="badges"><span class="b time">⏱️ Round trip ~2 hr (2.5 km each way)</span><span class="b free">💰 Free</span></div>
+      <p>The peninsula's most beautiful lava-cliff walk, passing the Gatklettur rock arch + sea stacks + caves, with Arctic terns swirling overhead · too lazy for the long walk: drive to Arnarstapi and do a short loop around Gatklettur instead</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.7680,-23.6210" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day9_budakirkja.jpg" alt="Budakirkja"></div>
+    <div class="info">
+      <h4>Búðakirkja — Black Church</h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 min</span><span class="b free">💰 Free</span></div>
+      <p>A black wooden church from 1847 standing alone in the Búðahraun lava field with a glacier backdrop, the last photo spot before leaving the peninsula → from here it's a long drive into Keflavík ~2 hr 45 min (can rest at Borgarnes)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.8220,-23.3850" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ Stay: Keflavík · Rokkheimur Studio (night 1/2) — self check-in via lockbox, arrive ~20:30–21:00</div>
+
+  <!-- ================= DAY 8 ================= -->
+  <div class="daybar">
+    <h2>Day 8 · Fri 31 Jul — Reykjanes + Keflavík + Blue Lagoon 20:00</h2>
+    <div class="sub">Explore near the airport → soak in the hot spring at the 20:00 slot (Best Rate)</div>
+    <div class="tags"><span class="tag">🚗 Total ~1.5 hr</span><span class="tag">📍 6 stops</span><span class="tag">🛏️ Stay Keflavík</span></div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_bridge.jpg" alt="Bridge"></div>
+    <div class="info">
+      <h4>Miðlína Bridge Between Continents</h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 min</span><span class="b free">💰 Free</span></div>
+      <p>A footbridge across the rift between the North American and Eurasian plates — cross between continents in a few steps</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8683,-22.6760" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#d9c4b0"/><rect y="72" width="132" height="40" fill="#9c6a44"/><ellipse cx="60" cy="74" rx="30" ry="8" fill="#6e4a30"/><g fill="#fff" opacity=".85"><ellipse cx="58" cy="50" rx="12" ry="17"/><ellipse cx="74" cy="44" rx="9" ry="13"/><ellipse cx="45" cy="50" rx="8" ry="11"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Gunnuhver</text></svg><img class="ph" src="images/gunnuhver.jpg" alt="Gunnuhver" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Gunnuhver</h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 min</span><span class="b free">💰 Free</span></div>
+      <p>Iceland's largest boiling mud pool + steam vents, with a boardwalk to view them up close (watch out for the hot steam)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8186,-22.6836" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/visa_reykjanes.jpg" alt="Reykjanes"></div>
+    <div class="info">
+      <h4>Reykjanesviti Lighthouse + Valahnúkamöl Cliffs</h4>
+      <div class="badges"><span class="b time">⏱️ 30–45 min</span><span class="b free">💰 Free</span></div>
+      <p>Iceland's oldest lighthouse on a hill + lava-rock cliffs, sea stacks, lots of seabirds, and endless ocean views</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8118,-22.7080" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#7fb0d4"/><rect y="70" width="132" height="42" fill="#3f7ba6"/><path d="M0,70 Q33,58 66,70 T132,70 V112 H0Z" fill="#5a97c2"/><ellipse cx="70" cy="88" rx="22" ry="9" fill="#2c5f86"/><path d="M12,64 Q22,48 36,60" stroke="#fff" stroke-width="4" fill="none" opacity=".8"/><path d="M96,66 Q104,52 116,62" stroke="#fff" stroke-width="3" fill="none" opacity=".6"/><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Brimketill</text></svg><img class="ph" src="images/brimketill.jpg" alt="Brimketill" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Brimketill — Optional</h4>
+      <div class="badges"><span class="b opt">Optional</span><span class="b time">⏱️ 15–20 min</span><span class="b free">💰 Free</span></div>
+      <p>A natural lava-rock pool by the sea where waves crash in beautifully, with a safe viewing platform (don't go near the water)</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8300,-22.6660" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#2f3b47"/><path d="M18,112 Q18,44 66,40 Q114,44 114,112Z" fill="#46586a"/><path d="M34,112 Q34,60 66,56 Q98,60 98,112Z" fill="#26313b"/><circle cx="66" cy="76" r="10" fill="#e8b98f"/><rect x="58" y="86" width="16" height="24" rx="6" fill="#c65f7a"/><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.5);stroke-width:2.5px">The Giantess</text></svg><img class="ph" src="images/giantess.jpg" alt="Giantess cave" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>The Giantess in the Cave</h4>
+      <div class="badges"><span class="b time">⏱️ 20–30 min</span><span class="b free">💰 Free (10:00–17:00)</span></div>
+      <p>A model cave by Keflavík harbor with a kindly giantess from a children's tale snoring in a rocking chair, plus giant-sized props; fun for photos and suitable for all ages</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=64.0028,-22.5636" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><svg viewBox="0 0 132 112" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><rect width="132" height="112" fill="#8fc0dd"/><rect y="74" width="132" height="38" fill="#3f7ba6"/><path d="M22,74 Q66,92 110,74 L100,62 L32,62 Z" fill="#6b3f24"/><path d="M32,62 Q26,46 40,44" stroke="#6b3f24" stroke-width="4" fill="none"/><rect x="64" y="30" width="4" height="32" fill="#5a3620"/><polygon points="68,32 92,42 68,52" fill="#d94f4f"/><g fill="#c9a24a"><circle cx="46" cy="67" r="3"/><circle cx="60" cy="69" r="3"/><circle cx="74" cy="69" r="3"/><circle cx="88" cy="67" r="3"/></g><text x="66" y="106" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" style="paint-order:stroke;stroke:rgba(0,0,0,.45);stroke-width:2.5px">Viking World</text></svg><img class="ph" src="images/vikingworld.jpg" alt="Viking World" onerror="this.remove()"></div>
+    <div class="info">
+      <h4>Viking World — Optional</h4>
+      <div class="badges"><span class="b opt">Optional</span><span class="b time">⏱️ 45–60 min</span><span class="b cost">💰 ~390 THB (check website)</span></div>
+      <p>A museum with a full-size replica Viking ship, "Íslendingur," that actually sailed across the ocean + a Viking-age exhibition, with a café</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.9930,-22.5610" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+
+  <div class="stop">
+    <div class="thumb"><img src="images/day10_bluelagoon.jpg" alt="Blue Lagoon"></div>
+    <div class="info">
+      <h4>⭐ Blue Lagoon — 20:00 slot (Best Rate)</h4>
+      <div class="badges"><span class="b time">⏱️ 2–2.5 hr</span><span class="b cost">💰 Comfort from ~3,120 THB</span></div>
+      <p>A milky-blue hot spring, soaking under the midnight sun · book the <b>20:00 · 31 Jul</b> slot in advance (fills up fast) · out of the water by 22:30, closes 23:00 · ~25 min back to the accommodation · 🌋 check the volcano status at safetravel.is before going</p>
+      <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=63.8804,-22.4495" target="_blank">🧭 Navigate</a>
+    </div>
+  </div>
+  <div class="sleep">🛏️ Stay: Keflavík · Rokkheimur Studio (night 2/2) · tomorrow return car 07:00, fly 08:40</div>
+
+  <!-- ================= ACCOMMODATION ================= -->
+  <h2 class="sec" id="acc-sec">🏠 Accommodations (all 5 places / 8 nights booked ✅)</h2>
+
+  <div class="acc">
+    <h4>1) ✅ Reykjavík · night Fri 24 Jul — Quiet Apartment Very Near Downtown</h4>
+    <div class="price">Booked via Airbnb · host replies very quickly</div>
+    <img class="accphoto" src="images/acc1_reykjavik.jpg" alt="Reykjavik apartment" onerror="this.remove()">
+    <ul>
+      <li><b>📋 Check-in notes:</b> Not self check-in — <b>message the host on the Airbnb app with your arrival time in advance</b> to arrange key pickup · ⚠️ In summer 2026 there's noisy nearby construction during weekday daytime (we arrive Friday evening, so it should be quiet)</li>
+      <li><b>Type:</b> Entire apartment (up to 4 people) in a quiet neighborhood on the west side of the old town, on Unnarstígur, walkable to the city center</li>
+      <li><b>Check-in/out:</b> 15:00 / 11:00 — arrive KEF 07:50, pick up car 09:00, ~45 min into the city, arriving before check-in → park and explore the city while you wait (ask the host about early check-in / bag drop)</li>
+      <li><b>Walking distances:</b> Hallgrímskirkja ~15 min · Laugavegur ~12 min · Harpa/Sun Voyager ~15 min · Lake Tjörnin ~8 min — no car needed the first night</li>
+      <li><b>Food/supermarket:</b> Bónus on Hallveigarstígur (~10 min walk) to stock up on breakfast · Bæjarins Beztu hot dog stand near the harbor</li>
+      <li><b>Address:</b> Unnarstígur 4, 101 Reykjavík
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=Unnarst%C3%ADgur+4%2C+101+Reykjav%C3%ADk" target="_blank">🧭 Navigate</a></li>
+    </ul>
+  </div>
+
+  <div class="acc">
+    <h4>2) ✅ Golden Circle (Grímsnes) · nights Sat–Sun 25–26 Jul — Þúfukot</h4>
+    <div class="price">Booked via Airbnb · ⭐ Superhost</div>
+    <img class="accphoto" src="images/acc2_thufukot.jpg" alt="Thufukot cabin hot tub" onerror="this.remove()">
+    <ul>
+      <li><b>📋 Check-in notes:</b> 🛁 <b>Has a hot tub with mountain views!</b> Bring swimwear · Not self check-in — the host can take up to 1 day to reply, <b>message your arrival time well in advance</b> · no CO detector installed (be careful around the gas stove/fireplace)</li>
+      <li><b>Type:</b> Entire country house (up to 4 people) in the middle of the Grímsnes fields, right in the Golden Circle area; peaceful with open views, and on clear nights you can see the beautiful midnight sun</li>
+      <li><b>Check-in/out:</b> 15:00 / <b>12:00 (noon — later than others)</b> no rush on the morning of the 27th</li>
+      <li><b>Driving distances from the stay:</b> Kerið ~15 min · Geysir ~35 min · Gullfoss ~45 min · Þingvellir ~40 min · Secret Lagoon (Flúðir) ~30 min — on the 26th, drive south to Seljalandsfoss waterfall ~50 min</li>
+      <li><b>Food/supermarket:</b> Stock up at Bónus Selfoss (~20 min) before heading to the stay; full kitchen, cook to save money for the full 2 nights</li>
+      <li><b>Finding the place:</b> No street number — set the navigation destination to "Þúfukot" or open the coordinates from the Airbnb app before leaving town (there is mobile signal in the area, but have a backup)
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=%C3%9E%C3%BAfukot%2C+Gr%C3%ADmsnes-+og+Grafningshreppur" target="_blank">🧭 Navigate</a></li>
+    </ul>
+  </div>
+
+  <div class="acc">
+    <h4>3) ✅ Hvolsvöllur · nights Mon–Tue 27–28 Jul — Hamar – Puffin 1</h4>
+    <div class="price">Booked via Airbnb · ⭐ Superhost · host replies very quickly</div>
+    <img class="accphoto" src="images/acc3_hamar.jpg" alt="Hamar Puffin tiny home" onerror="this.remove()">
+    <ul>
+      <li><b>📋 Check-in notes:</b> ✅ <b>Self check-in via lockbox</b> — the code comes in the app before your stay, so you can get in no matter how late you arrive · it's a tiny home ~15 min from the village, <b>buy groceries at Krónan before heading up</b> · no CO detector</li>
+      <li><b>Type:</b> A small house on the Hamar farm (<b>up to 3 people, just right for us</b>) outside Hvolsvöllur, a strategic base for the south coast, with views of the farm fields + Mt Eyjafjallajökull</li>
+      <li><b>Check-in/out:</b> 15:00 / 11:00 — on the 27th, coming from Grímsnes you can stop at Vík before checking in that evening (Fjaðrárgljúfur → back to the stay ~1.5 hr)</li>
+      <li><b>Driving distances from the stay:</b> Seljalandsfoss ~20 min · Skógafoss ~35 min · Vík ~1 hr · ⚠️ on the 28th, Jökulsárlón is far ~3 hr each way — leave before 08:00</li>
+      <li><b>Food/supermarket:</b> Krónan Hvolsvöllur (~10 min) + N1 gas station has food · recommended in town: Eldstó Art Café</li>
+      <li><b>Address:</b> Hamar, 861 Hvolsvöllur — the farm entrance is off the main road, look for the "Hamar" sign and use the coordinates from the Airbnb app
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=Hamar%2C+861+Hvolsv%C3%B6llur" target="_blank">🧭 Navigate</a></li>
+    </ul>
+  </div>
+
+  <div class="acc">
+    <h4>4) ✅ Grundarfjörður (Kirkjufell) · night Wed 29 Jul — Hálsaból 2 – Kirkjufell Cottage</h4>
+    <div class="price">Booked via Airbnb · ⭐ Superhost · host replies very quickly</div>
+    <img class="accphoto" src="images/acc4_sabol.jpg" alt="Kirkjufell cottage hot tub" onerror="this.remove()">
+    <ul>
+      <li><b>📋 Check-in notes:</b> ✅ <b>Self check-in via lockbox</b>, no need to arrange with the host · 🛁 private hot tub with Kirkjufell views (see the photo!), have your swimwear ready · it's only a few hundred meters from Kirkjufellsfoss — a quick walk/drive to the photo spot</li>
+      <li><b>Type:</b> Entire cottage (up to 5 people) on Snæfellsnesvegur on the outskirts of Grundarfjörður · 🛁 <b>private hot tub</b> — soak in the hot water with mountain views after a full day of driving, so worth it</li>
+      <li><b>Check-in/out:</b> 15:00 / 11:00 · <b>self check-in via lockbox</b> — the code comes in the Airbnb app before your stay, no need to arrange with the host, get in whenever you arrive</li>
+      <li><b>Highlight:</b> Kirkjufell + Kirkjufellsfoss are only ~5 min away — on the evening of the 29th, have dinner, soak in the hot tub, then head out to shoot during 20:00–22:00 for the best light (sunset ~22:40)</li>
+      <li><b>Food/supermarket:</b> Kjörbúðin in Grundarfjörður town (~5 min) · recommended seafood restaurant Bjargarsteinn Mathús with bay views (book ahead if you can go)</li>
+      <li><b>Address:</b> Snæfellsnesvegur, 350 Grundarfjörður — right on main road 54, easy to find
+        <a class="nav" href="https://www.google.com/maps/dir/?api=1&destination=Grundarfj%C3%B6r%C3%B0ur%2C+Iceland" target="_blank">🧭 Navigate to town</a></li>
+    </ul>
+  </div>
+
+  <div class="acc">
+    <h4>5) ✅ Keflavík · nights Thu–Fri 30–31 Jul — Rokkheimur Studio Apartment</h4>
+    <div class="price">Booked via Airbnb</div>
+    <img class="accphoto" src="images/acc5_rokkheimur.jpg" alt="Rokkheimur Studio Apartment" onerror="this.remove()">
+    <ul>
+      <li><b>📋 Check-in notes:</b> 🔑 <b>Self check-in with lockbox</b> — get in yourself without waiting for the host · on the 30th, arriving from Snæfellsnes ~20:30–21:00, you can go straight in · on the morning of 1 Aug, leave around 5:30–6:00 to return the car, just lock the door and put the key back in the lockbox (no need to disturb the host)</li>
+      <li><b>Type:</b> Studio apartment (up to 3 people — just right for us) · house rules: no pets · has a smoke detector</li>
+      <li><b>Location:</b> Skólavegur in central Keflavík · <b>close to KEF airport ~5–7 min</b> — return car 07:00 + fly 08:40, very comfortable · Blue Lagoon ~20 min (on the night of the 31st, come back to sleep after soaking)</li>
+      <li><b>Check-in/out:</b> after 16:00 / before 11:00 · 3 people</li>
+      <li>✅ <b>Confirmed correct dates: check in 30 Jul → check out 1 Aug 2026 (2 nights)</b></li>
+    </ul>
+  </div>
+
+  <!-- ================= TIPS ================= -->
+  <h2 class="sec">💡 Important Notes</h2>
+  <table>
+    <tr><th>Topic</th><th>Details</th></tr>
+    <tr><td class="dt">🚗 Car</td><td>The RAV4 handles the main roads + Golden Circle easily · buy insurance to reduce the excess + gravel/sand protection (Gravel/SAAP) at the counter · fill up the tank before returning the car at 07:00</td></tr>
+    <tr><td class="dt">💧 Blue Lagoon</td><td>Book the 20:00 · 31 Jul slot in advance (fills up fast) · in summer open 07:00–23:00 · the evening slot gets the Best Rate</td></tr>
+    <tr><td class="dt">🅿️ Parking fees</td><td>Many spots are paid via the Parka app or website · have a credit card with a PIN ready</td></tr>
+    <tr><td class="dt">🍳 Food</td><td>Buy groceries at Bónus / Krónan and cook to save a lot compared to eating out</td></tr>
+    <tr><td class="dt">🌦️ Weather</td><td>Late Jul has nearly 20 hr of daylight · ~8–15°C, windy — bring a windbreaker/rain jacket</td></tr>
+    <tr><td class="dt">🌋 Reykjanes</td><td>The Grindavík/Blue Lagoon area has had volcanic eruptions (2023–24) · check safetravel.is before going and have a backup plan (Sky Lagoon)</td></tr>
+  </table>
+
+  <p class="foot">The full plan + details for every stop on one page · works offline (except the route map and Navigate buttons, which need internet)<br>
+  Prices are approximate per adult (100 ISK ≈ 26 THB, Jun 2026) · double-check official websites before you go</p>
+  <p class="foot" style="font-size:11px;opacity:.72">📷 Photo credits: Secret Lagoon by <a href="https://www.flickr.com/photos/89573828@N00/42021353231" target="_blank" rel="noopener" style="color:inherit">kabell</a> (<a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener" style="color:inherit">CC BY 2.0</a>) · Múlagljúfur by <a href="https://commons.wikimedia.org/wiki/File:Mulagljufur.jpg" target="_blank" rel="noopener" style="color:inherit">J24N</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener" style="color:inherit">CC BY-SA 4.0</a>)</p>
+
+</div>
+</body>
+</html>
