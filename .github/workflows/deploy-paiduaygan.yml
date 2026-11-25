@@ -1,0 +1,35 @@
+name: Deploy Pai Duay Gan site
+
+# Deploys pai-duay-gan/site to a Cloudflare Pages project named "pai-duay-gan".
+# Manual only (Actions tab -> Run workflow), so nothing goes public until the
+# owner has replaced the placeholder LINE ID and confirmed the licence question.
+# The Run button appears once this file is on the default branch.
+# Uses the same CLOUDFLARE_API_TOKEN secret as the Iceland site.
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create Pages project if missing
+        uses: cloudflare/wrangler-action@v3
+        continue-on-error: true
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 123ab630f5cbd404e46c60311212541c
+          command: pages project create pai-duay-gan --production-branch=main
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 123ab630f5cbd404e46c60311212541c
+          command: pages deploy "pai-duay-gan/site" --project-name=pai-duay-gan --branch=main
