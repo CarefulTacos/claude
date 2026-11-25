@@ -48,6 +48,13 @@ h2{font-size:64px;margin-top:16px}
 #p4 .note{margin-top:20px;font-size:28px;color:var(--muted)}
 #p4 .promo{margin-top:16px;background:var(--marigold-soft);border-radius:20px;padding:20px 30px;font-size:34px;font-weight:600}
 
+
+/* p5 purposes */
+#p5 .grid{margin-top:36px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+#p5 .grid div{background:var(--surface);border:2px solid var(--line);border-radius:20px;padding:18px 20px;display:grid;gap:4px;align-content:start}
+#p5 .grid b{font-family:var(--f-display);font-size:30px;line-height:1.25}
+#p5 .grid span{font-size:22px;color:var(--muted);line-height:1.35}
+#p5 .note{margin-top:20px;font-size:26px;color:var(--muted)}
 /* p6 checklist */
 #p6{padding:64px 84px}
 #p6 .foot{padding-top:18px}
@@ -72,7 +79,7 @@ h2{font-size:64px;margin-top:16px}
 <template id="markTpl"><svg viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="CIRCLE"/><circle cx="12.5" cy="12" r="3" fill="FG"/><circle cx="21.5" cy="13" r="2.6" fill="FG"/><path d="M8 25c0-4 2-7 4.5-7s4.5 3 4.5 7M17 25c0-3.6 2-6.2 4.5-6.2S26 21.4 26 25" stroke="FG" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg></template>
 
 <section class="frame sq dark" id="p1">
-  <span class="eyebrow">ผู้ช่วยพาไปหาหมอ · กรุงเทพฯ</span>
+  <span class="eyebrow">ผู้ช่วยพาคุณพ่อคุณแม่ไปทุกธุระ · กรุงเทพฯ</span>
   <h1><span class="nw">วันที่คุณไปเองไม่ได้</span><br><span class="nw">เราไปรับคุณพ่อคุณแม่</span><br><span class="nw">ถึงบ้าน</span></h1>
   <div class="chips"><span>รับ-ส่งถึงบ้าน</span><span>อยู่ด้วยตลอดนัด</span><span>อัปเดตทาง LINE</span></div>
   <div class="foot"><span class="mark" data-mark="light">ไปด้วยกัน</span><b>LINE {{LINE_ID}}</b></div>
@@ -113,6 +120,24 @@ h2{font-size:64px;margin-top:16px}
   </div>
   <p class="note">เกินเวลา 200 บาท/30 นาที · ค่าแท็กซี่หรือรถจากแอปจ่ายตามใบเสร็จ</p>
   <p class="promo">10 ครอบครัวแรก ลด 30%</p>
+  <div class="foot"><span class="mark" data-mark="dark">ไปด้วยกัน</span><b>LINE {{LINE_ID}}</b></div>
+</section>
+
+<section class="frame sq" id="p5">
+  <span class="eyebrow">ไม่ใช่แค่ไปหาหมอ</span>
+  <h2><span class="nw">ธุระไหนที่ลูกไปด้วยไม่ได้</span><br><span class="nw">เราไปด้วยกันได้</span></h2>
+  <div class="grid">
+    <div><b>หาหมอ</b><span>ตรวจสุขภาพ ทำฟัน</span></div>
+    <div><b>ธนาคาร</b><span>ปรับสมุด จ่ายบิล ไปรษณีย์</span></div>
+    <div><b>ราชการ</b><span>ทำบัตร เบี้ยผู้สูงอายุ</span></div>
+    <div><b>ซื้อของ</b><span>ตลาด ห้าง ของขวัญหลาน</span></div>
+    <div><b>ทำผม</b><span>ตัดผม ทำเล็บ นวดเท้า</span></div>
+    <div><b>ทำบุญ</b><span>วัด ศาสนกิจ ไปสุสาน</span></div>
+    <div><b>งานครอบครัว</b><span>งานแต่ง งานบวช งานศพ</span></div>
+    <div><b>เยี่ยมเพื่อน</b><span>กินข้าวกับเพื่อนเก่า</span></div>
+    <div><b>สนามบิน</b><span>ส่งขึ้นเครื่อง รับจากสถานี</span></div>
+  </div>
+  <p class="note">รับถึงบ้าน อยู่ด้วยตลอด ส่งกลับถึงบ้าน · ไม่ใช่งานพยาบาล</p>
   <div class="foot"><span class="mark" data-mark="dark">ไปด้วยกัน</span><b>LINE {{LINE_ID}}</b></div>
 </section>
 

@@ -22,7 +22,7 @@ function fill(file) {
   const p = await b.newPage({ viewport: { width: 2600, height: 1800 } });
 
   await p.goto(fill('social.html')); await p.evaluate(() => document.fonts.ready);
-  for (const id of ['p1', 'p2', 'p3', 'p4', 'p6', 'p7']) {
+  for (const id of ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7']) {
     await p.locator('#' + id).screenshot({ path: path.join(OUT, `ig-${id}.png`) });
   }
   await p.goto(fill('richmenu.html')); await p.evaluate(() => document.fonts.ready);
