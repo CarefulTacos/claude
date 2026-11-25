@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+/* LINE rich menu, large: 2500 x 1686, 4 areas (2 x 2). Area bounds for LINE OA Manager: A 0,0-1250,843 · B 1250,0-2500,843 · C 0,843-1250,1686 · D 1250,843-2500,1686 */
+#rm{width:2500px;height:1686px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:0;background:var(--line)}
+.cell{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:48px;text-align:center;background:var(--surface);border:3px solid var(--line)}
+.cell svg{width:220px;height:220px}
+.cell b{font-family:var(--f-display);font-weight:700;font-size:118px;line-height:1.1}
+.cell span{font-size:58px;color:var(--muted)}
+.cell.main{background:var(--jade);color:#fff;border-color:var(--jade)}
+.cell.main span{color:var(--marigold-soft)}
+</style></head><body>
+<section class="frame" id="rm">
+  <div class="cell main">
+    <svg viewBox="0 0 48 48" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="10" width="34" height="31" rx="4"/><path d="M7 19h34M16 6v8M32 6v8M17 30l5 5 9-10"/></svg>
+    <b>จองเลย</b><span>กรอกนัด 3 นาที</span>
+  </div>
+  <div class="cell">
+    <svg viewBox="0 0 48 48" fill="none" stroke="#1E6A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M26 6H40v14L22 38 8 24z"/><circle cx="33" cy="13" r="2.5"/></svg>
+    <b>ราคา</b><span>ครึ่งวัน 1,490 บาท</span>
+  </div>
+  <div class="cell">
+    <svg viewBox="0 0 48 48" fill="none" stroke="#1E6A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="13" r="5"/><circle cx="32" cy="15" r="4"/><path d="M8 40c0-8 4-14 9-14s9 6 9 14M24 40c0-7 3.5-12 8-12s8 5 8 12"/></svg>
+    <b>ผู้ช่วยทำอะไร</b><span>ทำ / ไม่ทำ</span>
+  </div>
+  <div class="cell">
+    <svg viewBox="0 0 48 48" fill="none" stroke="#1E6A5B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H20l-8 8v-8h0a4 4 0 0 1-4-4z"/><path d="M16 18h16M16 24h10"/></svg>
+    <b>คุยกับเรา</b><span>ตอบก่อน 08:30 และหลัง 18:00</span>
+  </div>
+</section>
+</body></html>

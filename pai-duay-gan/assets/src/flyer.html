@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+@page{size:148mm 210mm;margin:0}
+body{background:#fff}
+.page{width:148mm;height:210mm;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.top{background:var(--jade);color:#fff;padding:11mm 10mm 9mm}
+.top .mark{font-size:15pt}
+.top h1{font-family:var(--f-display);font-weight:700;font-size:23pt;line-height:1.22;margin-top:6mm}
+.top p{font-size:10.5pt;margin-top:3mm;opacity:.92;line-height:1.55}
+.body{padding:7mm 10mm 0;display:grid;gap:5mm;font-size:9.5pt;line-height:1.5}
+h3{font-family:var(--f-display);font-size:12pt;color:var(--jade);margin-bottom:1.5mm}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+ul{padding-left:4.5mm}
+.no li{color:var(--muted)}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
+.price{background:#fff;border:.4mm solid var(--line);border-radius:3mm;padding:3mm;text-align:center}
+.price.main{border:.6mm solid var(--jade)}
+.price b{display:block;font-family:var(--f-display);font-size:16pt;color:var(--jade)}
+.price small{color:var(--muted);font-size:8pt}
+.fine{font-size:8pt;color:var(--muted)}
+.cta{margin-top:auto;display:grid;grid-template-columns:30mm 1fr;gap:5mm;align-items:center;background:#fff;border-top:.4mm solid var(--line);padding:6mm 10mm}
+.cta img{width:30mm;height:30mm}
+.cta b{font-family:var(--f-display);font-size:14pt;display:block}
+.cta .id{font-family:var(--f-mono);font-size:13pt;color:var(--jade)}
+.promo{background:var(--marigold-soft);border-radius:3mm;padding:2.5mm 4mm;font-weight:600}
+</style></head><body>
+<div class="page">
+  <div class="top">
+    <span class="mark" data-mark="light">ไปด้วยกัน</span>
+    <h1>วันที่คุณไปเองไม่ได้<br>เราไปรับคุณพ่อคุณแม่ถึงบ้าน</h1>
+    <p>ผู้ช่วยพาไปหาหมอ ตรวจสุขภาพ หรือทำธุระ อยู่ด้วยตลอดนัด ส่งกลับถึงบ้าน และส่งสรุปคำหมอให้ทาง LINE ในกรุงเทพฯ</p>
+  </div>
+  <div class="body">
+    <div class="two">
+      <div><h3>ผู้ช่วยทำ</h3><ul><li>รับถึงบ้าน พยุง เข็นวีลแชร์</li><li>ยื่นบัตร ต่อคิว พาไปแต่ละแผนก</li><li>จดคำหมอ ถ่ายรูปฉลากยา</li><li>อัปเดตทาง LINE ตลอดนัด</li></ul></div>
+      <div class="no"><h3>ผู้ช่วยไม่ทำ</h3><ul><li>งานพยาบาล ฉีดยา ทำแผล</li><li>จัดยาหรือป้อนยา</li><li>เซ็นเอกสารแทนผู้ป่วย</li><li>เฝ้าไข้ ค้างคืน</li></ul></div>
+    </div>
+    <div>
+      <h3>ราคา</h3>
+      <div class="prices">
+        <div class="price"><small>รายชั่วโมง</small><b>390</b><small>ขั้นต่ำ 3 ชม.</small></div>
+        <div class="price main"><small>ครึ่งวัน</small><b>1,490</b><small>สูงสุด 4 ชม.</small></div>
+        <div class="price"><small>เต็มวัน</small><b>2,690</b><small>สูงสุด 8 ชม.</small></div>
+      </div>
+      <p class="fine" style="margin-top:2mm">ค่าแท็กซี่หรือรถจากแอปจ่ายตามใบเสร็จจริง · เกินเวลา 200 บาท/30 นาที · จองล่วงหน้า 2 วัน</p>
+    </div>
+    <p class="promo">10 ครอบครัวแรก ลด 30%</p>
+    <p class="fine">ผู้ช่วยทุกคนผ่านการสัมภาษณ์ ตรวจประวัติ อบรม และมีประกันอุบัติเหตุ · บริการนี้ไม่ใช่บริการทางการแพทย์ กรณีฉุกเฉินโทร 1669</p>
+  </div>
+  <div class="cta">
+    <img src="../out/qr-line.svg" alt="QR LINE">
+    <div><b>จองทาง LINE</b><span class="id">{{LINE_ID}}</span><br><span class="fine">สแกน QR แล้วกด "จองเลย"</span></div>
+  </div>
+</div>
+<script>
+const s='<svg viewBox="0 0 34 34" style="width:1.35em;height:1.35em"><circle cx="17" cy="17" r="16" fill="#fff"/><circle cx="12.5" cy="12" r="3" fill="#1E6A5B"/><circle cx="21.5" cy="13" r="2.6" fill="#1E6A5B"/><path d="M8 25c0-4 2-7 4.5-7s4.5 3 4.5 7M17 25c0-3.6 2-6.2 4.5-6.2S26 21.4 26 25" stroke="#1E6A5B" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>';
+document.querySelectorAll('[data-mark]').forEach(el=>el.insertAdjacentHTML('afterbegin',s));
+</script>
+</body></html>

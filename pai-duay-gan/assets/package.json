@@ -1,0 +1,6 @@
+{
+  "name": "pai-duay-gan-assets",
+  "private": true,
+  "description": "Renders social images, LINE rich menu, flyer and assistant card. Run: npm install && node build.js",
+  "dependencies": { "qrcode": "1.5.4" }
+}

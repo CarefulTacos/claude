@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="th"><head><meta charset="utf-8"><link rel="stylesheet" href="brand.css">
+<style>
+/* Credit-card size (CR80) 85.6 x 54 mm, page 1 = front checklist, page 2 = back emergency */
+@page{size:85.6mm 54mm;margin:0}
+body{background:#fff}
+.card{width:85.6mm;height:54mm;padding:3.6mm 4.2mm;overflow:hidden;page-break-after:always;display:flex;flex-direction:column;font-size:6.3pt;line-height:1.38}
+.front{background:var(--bg)}
+.back{background:var(--jade);color:#fff}
+.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.6mm}
+.head .mark{font-size:8.5pt}
+.head small{font-size:6pt;opacity:.8}
+h4{font-family:var(--f-display);font-size:7.6pt;margin-bottom:1mm}
+ol,ul{padding-left:3.6mm}
+.back h4{color:var(--marigold-soft)}
+.big{font-family:var(--f-display);font-weight:700;font-size:15pt;line-height:1}
+.row{display:flex;justify-content:space-between;gap:2mm;margin-top:auto;border-top:.25mm solid rgba(255,255,255,.35);padding-top:1.4mm}
+.row span b{font-family:var(--f-mono);font-weight:500}
+</style></head><body>
+<div class="card front">
+  <div class="head"><span class="mark" data-mark="dark">ไปด้วยกัน</span><small>การ์ดผู้ช่วย · วันนัด</small></div>
+  <h4>เช็กลิสต์</h4>
+  <ol>
+    <li>คืนก่อน: โทรแนะนำตัว เตือนเอกสาร เช็กเส้นทาง</li>
+    <li>ถึงก่อน 15 นาที ส่งรูป "ถึงแล้ว" ในกลุ่มนัด</li>
+    <li>เช็กของ: บัตร ปชช. บัตร รพ. ใบนัด ยาเดิม เงิน/บัตร</li>
+    <li>อัปเดต: ถึง รพ. / เจาะเลือด / พบหมอ / รับยา / ออก</li>
+    <li>ถ่ายรูปใบนัดใหม่ ฉลากยา ใบเสร็จทุกใบ</li>
+    <li>ใกล้เกินเวลา แจ้งครอบครัวก่อน 30 นาที</li>
+    <li>เห็นผู้สูงอายุเข้าบ้าน แล้วส่งสรุปภายใน 1 ชม.</li>
+  </ol>
+</div>
+<div class="card back">
+  <div class="head"><span class="mark" data-mark="light">ไปด้วยกัน</span><small>เหตุฉุกเฉิน</small></div>
+  <div style="display:flex;align-items:baseline;gap:2.5mm;margin-bottom:1.4mm"><span class="big">1669</span><span>โทรก่อนทันที ไม่ต้องรออนุญาต<br>ใน รพ. เรียกเจ้าหน้าที่ใกล้ที่สุด</span></div>
+  <ul>
+    <li>หกล้ม หมดสติ เจ็บหน้าอก หายใจไม่ออก หน้าเบี้ยว พูดไม่ชัด</li>
+    <li>จากนั้นโทรญาติ (เบอร์ในกลุ่มนัด) แล้วแจ้งเจ้าของ</li>
+    <li>อยู่ด้วยจนมีคนรับช่วงต่อ ห้ามให้ยาหรืออาหารเอง</li>
+    <li>หลงกันใน รพ.: แจ้ง รปภ./ประชาสัมพันธ์ทันที</li>
+  </ul>
+  <div class="row"><span>เจ้าของ <b>{{OWNER_PHONE}}</b></span><span>LINE <b>{{LINE_ID}}</b></span></div>
+</div>
+<script>
+const mk=(c,f)=>'<svg viewBox="0 0 34 34" style="width:1.35em;height:1.35em"><circle cx="17" cy="17" r="16" fill="'+c+'"/><circle cx="12.5" cy="12" r="3" fill="'+f+'"/><circle cx="21.5" cy="13" r="2.6" fill="'+f+'"/><path d="M8 25c0-4 2-7 4.5-7s4.5 3 4.5 7M17 25c0-3.6 2-6.2 4.5-6.2S26 21.4 26 25" stroke="'+f+'" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>';
+document.querySelectorAll('[data-mark]').forEach(el=>{const l=el.dataset.mark==='light';el.insertAdjacentHTML('afterbegin',l?mk('#fff','#1E6A5B'):mk('#1E6A5B','#fff'))});
+document.querySelectorAll('.mark').forEach(m=>{m.style.display='inline-flex';m.style.alignItems='center';m.style.gap='.4em'});
+</script>
+</body></html>

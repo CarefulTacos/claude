@@ -8,7 +8,11 @@
 | --- | --- |
 | `site/index.html` | เว็บไซต์หน้าเดียว (ไฟล์เดียว ไม่ต้อง build) ใช้ deploy จริง |
 | `site/body.html` | เนื้อหาเดียวกัน แบบที่ใช้แสดงตัวอย่างบน claude.ai |
+| `site/terms.html`, `site/privacy.html` | หน้าเงื่อนไขบริการและนโยบายความเป็นส่วนตัว (ร่าง รอนักกฎหมาย) |
 | `templates/booking-tracker.csv` | หัวคอลัมน์ชีตติดตามนัด นำเข้า Google Sheets ได้เลย |
+| `templates/pai-duay-gan-operations.xlsx` | ไฟล์บริหารนัด ค่าผู้ช่วย ค่าใช้จ่าย และกำไรรายเดือน (มีสูตรคำนวณ) สร้างใหม่ได้ด้วย `python3 tools/make_workbook.py` |
+| `assets/out/` | รูป Instagram 6 รูป เมนู LINE ใบปลิว A5 (PDF) การ์ดผู้ช่วย (PDF) และ QR LINE |
+| `assets/src/` + `assets/build.js` | ต้นฉบับของรูปทั้งหมด แก้ `assets/config.json` แล้วรัน `npm install && node build.js` เพื่อสร้างใหม่ |
 
 ## ต้องแก้ก่อนเปิดเว็บจริง
 

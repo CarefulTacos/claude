@@ -1,0 +1,17 @@
+@font-face{font-family:"Bai Jamjuree";font-weight:600;src:url(../fonts/BaiJamjuree-600.ttf)}
+@font-face{font-family:"Bai Jamjuree";font-weight:700;src:url(../fonts/BaiJamjuree-700.ttf)}
+@font-face{font-family:"IBM Plex Sans Thai";font-weight:400;src:url(../fonts/PlexThai-400.ttf)}
+@font-face{font-family:"IBM Plex Sans Thai";font-weight:500;src:url(../fonts/PlexThai-500.ttf)}
+@font-face{font-family:"IBM Plex Sans Thai";font-weight:600;src:url(../fonts/PlexThai-600.ttf)}
+@font-face{font-family:"IBM Plex Mono";font-weight:500;src:url(../fonts/PlexMono-500.ttf)}
+:root{
+  --bg:#F5F8F7; --surface:#FFFFFF; --ink:#1A2A28; --muted:#566664; --line:#D9E3E0;
+  --jade:#1E6A5B; --jade-deep:#164F44; --jade-soft:#E3F0EC; --marigold:#C9861F; --marigold-soft:#FBF0DC;
+  --f-display:"Bai Jamjuree",sans-serif; --f-body:"IBM Plex Sans Thai",sans-serif; --f-mono:"IBM Plex Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f-body);color:var(--ink);background:#888}
+.frame{position:relative;overflow:hidden;background:var(--bg)}
+.nw{white-space:nowrap}
+.mark{display:inline-flex;align-items:center;gap:.4em;font-family:var(--f-display);font-weight:700}
+.mark svg{width:1.35em;height:1.35em;flex:none}
