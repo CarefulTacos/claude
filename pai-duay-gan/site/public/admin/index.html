@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>หลังบ้าน · ไปด้วยกัน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/app.css">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body>
+<div id="login" class="login hidden">
+  <form id="login-form" class="card stack" novalidate>
+    <h1>หลังบ้าน ไปด้วยกัน</h1>
+    <label>รหัสผ่าน <input type="password" name="password" autocomplete="current-password" required></label>
+    <p class="err" id="login-error" role="alert"></p>
+    <button class="btn" type="submit">เข้าสู่ระบบ</button>
+  </form>
+</div>
+
+<div id="app" class="app hidden">
+  <header class="admin-top">
+    <a class="brand" href="#/">
+      <svg width="28" height="28" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="var(--jade)"/><circle cx="12.5" cy="12" r="3" fill="var(--on-jade)"/><circle cx="21.5" cy="13" r="2.6" fill="var(--on-jade)"/><path d="M8 25c0-4 2-7 4.5-7s4.5 3 4.5 7M17 25c0-3.6 2-6.2 4.5-6.2S26 21.4 26 25" stroke="var(--on-jade)" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+      หลังบ้าน
+    </a>
+    <button class="btn ghost sm menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav">เมนู</button>
+  </header>
+  <nav id="nav" class="side" aria-label="เมนูหลังบ้าน">
+    <a href="#/">แดชบอร์ด</a>
+    <a href="#/bookings">นัดทั้งหมด</a>
+    <a href="#/calendar">ปฏิทิน</a>
+    <a href="#/assistants">ผู้ช่วย</a>
+    <a href="#/payouts">ค่าผู้ช่วย</a>
+    <a href="#/customers">ลูกค้า</a>
+    <a href="#/expenses">ค่าใช้จ่าย</a>
+    <a href="#/reports">รายงาน</a>
+    <a href="#/qr">QR พร้อมเพย์</a>
+    <a href="#/settings">ตั้งค่า</a>
+    <a href="#/pdpa">PDPA</a>
+    <button type="button" id="logout" class="linkbtn">ออกจากระบบ</button>
+  </nav>
+  <main id="view" class="view" tabindex="-1"></main>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="/vendor/qrcode-generator-2.0.4.js"></script>
+<script type="module" src="/admin/admin.js"></script>
+</body>
+</html>

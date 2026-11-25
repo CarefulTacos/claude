@@ -1,0 +1,10 @@
+# Cloudflare Pages project config. Bindings here are the source of truth for the deployed site.
+name = "pai-duay-gan"
+pages_build_output_dir = "public"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pai-duay-gan"
+database_id = "REPLACE_WITH_D1_ID"
+migrations_dir = "migrations"

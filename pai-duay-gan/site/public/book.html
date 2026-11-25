@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>จองนัด · ไปด้วยกัน</title>
+<meta name="description" content="จองผู้ช่วยพาคุณพ่อคุณแม่ไปทุกธุระ หาหมอ ธนาคาร ทำบุญ ซื้อของ รับถึงบ้าน ส่งกลับถึงบ้าน ในกรุงเทพฯ">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/assets/app.css">
+<style>
+main{padding-block:28px 56px}
+.intro{display:grid;gap:10px;margin-bottom:22px}
+form{display:grid;gap:20px}
+.estimate{position:sticky;bottom:0;z-index:5;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between;box-shadow:0 -6px 20px rgba(0,0,0,.06)}
+.estimate b{font-family:var(--f-display);font-size:1.4rem;font-variant-numeric:tabular-nums}
+.pkg{display:grid;gap:8px}
+.pkg label{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-weight:400;background:var(--bg)}
+.pkg label:has(input:checked){border-color:var(--jade);background:var(--jade-soft)}
+.pkg input{accent-color:var(--jade);width:20px;height:20px;margin-top:4px;flex:none}
+.pkg .p{margin-left:auto;font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+.done-panel{display:grid;gap:16px}
+.code{font-family:var(--f-mono);font-size:1.8rem;color:var(--jade)}
+.summary{display:grid;grid-template-columns:auto 1fr;gap:4px 14px}
+.summary dt{color:var(--muted)}
+.summary dd{margin:0}
+ol.next{margin:0;padding-left:1.3em;display:grid;gap:6px}
+.secondary{margin-top:6px}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="ไปด้วยกัน หน้าแรก">
+      <svg width="32" height="32" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="var(--jade)"/><circle cx="12.5" cy="12" r="3" fill="var(--on-jade)"/><circle cx="21.5" cy="13" r="2.6" fill="var(--on-jade)"/><path d="M8 25c0-4 2-7 4.5-7s4.5 3 4.5 7M17 25c0-3.6 2-6.2 4.5-6.2S26 21.4 26 25" stroke="var(--on-jade)" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+      ไปด้วยกัน
+    </a>
+    <a href="/#price" class="small">ดูราคา</a>
+  </div>
+</header>
+
+<main class="wrap" style="max-width:760px">
+  <div id="form-area">
+    <div class="intro">
+      <span class="eyebrow">จองนัด</span>
+      <h1>ขอคิวผู้ช่วย พาไปทุกธุระ</h1>
+      <p class="muted">วันที่คุณไปเองไม่ได้ ผู้ช่วยของเราพาคุณพ่อคุณแม่ไปหาหมอ ธนาคาร ทำบุญ ซื้อของ หรือเยี่ยมญาติ รับถึงบ้านและส่งกลับถึงบ้าน กรอกประมาณ 3 นาที เรายังไม่เก็บเงินตอนนี้ จะยืนยันคิว ชื่อผู้ช่วย และราคาทาง LINE ก่อนเสมอ</p>
+      <p class="small muted secondary">ไม่สะดวกกรอกฟอร์ม? ทักทาง LINE <a id="line-link" href="https://line.me/R/ti/p/@paiduaygan" target="_blank" rel="noopener"><span class="line-id">@paiduaygan</span></a> ได้เหมือนกัน</p>
+    </div>
+    <div id="load-error" class="alert hidden" role="alert"></div>
+
+    <form id="book" novalidate>
+      <div class="hp" aria-hidden="true"><label>เว็บไซต์ <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <fieldset>
+        <legend>ผู้จอง</legend>
+        <div class="grid2">
+          <label>ชื่อผู้จอง <input type="text" name="booker_name" autocomplete="name" maxlength="100" required><span class="err" id="err-booker_name"></span></label>
+          <label>เบอร์โทร <input type="tel" name="booker_phone" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="0812345678" required><span class="err" id="err-booker_phone"></span></label>
+          <label>ชื่อ LINE <span class="hint">ใช้ส่งยืนยันคิวและอัปเดตระหว่างนัด</span><input type="text" name="booker_line" maxlength="100" required><span class="err" id="err-booker_line"></span></label>
+          <label>เกี่ยวข้องเป็น <select name="relationship" required><option value="">เลือก</option></select><span class="err" id="err-relationship"></span></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>ผู้สูงอายุ</legend>
+        <div class="grid2">
+          <label>ชื่อที่ให้ผู้ช่วยเรียก <span class="hint">เช่น คุณแม่สมศรี ป้าแดง</span><input type="text" name="elder_name" maxlength="100" required><span class="err" id="err-elder_name"></span></label>
+          <label>อายุ <input type="number" name="elder_age" inputmode="numeric" min="18" max="120" required><span class="err" id="err-elder_age"></span></label>
+          <label>เบอร์โทรผู้สูงอายุ <span class="hint">ถ้ามี ผู้ช่วยจะโทรแนะนำตัวคืนก่อนนัด</span><input type="tel" name="elder_phone" inputmode="tel" maxlength="20"><span class="err" id="err-elder_phone"></span></label>
+          <label>เบอร์ติดต่อฉุกเฉิน <span class="hint">คนในครอบครัวที่รับสายได้วันนัด</span><input type="tel" name="emergency_phone" inputmode="tel" maxlength="20" required><span class="err" id="err-emergency_phone"></span></label>
+        </div>
+        <div class="label" role="group" aria-labelledby="lb-mob"><span id="lb-mob">การเดิน</span><div class="choices" id="mobility"></div><span class="err" id="err-mobility"></span></div>
+        <div class="label" role="group" aria-labelledby="lb-com"><span id="lb-com">การสื่อสาร</span><div class="choices" id="communication"></div><span class="err" id="err-communication"></span></div>
+        <label id="comm-other" class="hidden">อธิบายเพิ่มเติม <input type="text" name="communication_other" maxlength="200"><span class="err" id="err-communication_other"></span></label>
+        <label>ข้อมูลสุขภาพที่ผู้ช่วยต้องรู้ <span class="hint">เช่น โรคประจำตัว ยาที่แพ้ เดินช้า ต้องพักบ่อย เข้าห้องน้ำบ่อย</span><textarea name="health_notes" maxlength="1000"></textarea><span class="err" id="err-health_notes"></span></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>นัดหมาย</legend>
+        <div class="label">
+          <span id="lb-date">วันนัด</span>
+          <span class="hint" id="date-hint">จองล่วงหน้าอย่างน้อย 2 วัน วันที่ขีดฆ่าคือคิวเต็มหรือจองไม่ทัน</span>
+          <div class="cal" id="cal" role="group" aria-labelledby="lb-date"></div>
+          <input type="hidden" name="date">
+          <span class="err" id="err-date" role="alert"></span>
+        </div>
+        <label>ที่อยู่รับ <span class="hint">บ้านเลขที่ ซอย ถนน จุดสังเกต</span><textarea name="pickup_address" maxlength="400" required style="min-height:70px"></textarea><span class="err" id="err-pickup_address"></span></label>
+        <div class="grid2">
+          <label>เขต <select name="district" required><option value="">เลือกเขต</option></select><span class="err" id="err-district"></span></label>
+          <label>ลิงก์ Google Maps <span class="hint">ไม่บังคับ</span><input type="url" name="maps_link" inputmode="url" maxlength="500" placeholder="https://maps.app.goo.gl/..."><span class="err" id="err-maps_link"></span></label>
+        </div>
+        <div class="grid2">
+          <label>ประเภทธุระ <select name="purpose" required><option value="">เลือกธุระ</option></select><span class="err" id="err-purpose"></span></label>
+          <label id="purpose-other" class="hidden">ระบุธุระ <input type="text" name="purpose_other" maxlength="200"><span class="err" id="err-purpose_other"></span></label>
+          <label>สถานที่ปลายทาง <span class="hint">เช่น รพ.จุฬาฯ ธนาคารสาขาสยาม วัดปากน้ำ</span><input type="text" name="destination" maxlength="200" required><span class="err" id="err-destination"></span></label>
+          <label>เวลาที่ต้องถึงปลายทาง / เวลานัด <input type="time" name="start_time" required><span class="err" id="err-start_time"></span></label>
+        </div>
+        <label>จุดแวะเพิ่มเติม <span class="hint">ไม่บังคับ บรรทัดละ 1 จุด ไม่เกิน 3 จุด เช่น ร้านขายยา ไปรษณีย์</span><textarea name="stops" rows="3" maxlength="600" style="min-height:70px"></textarea><span class="err" id="err-stops"></span></label>
+        <div class="label hidden" role="group" aria-labelledby="lb-fast" id="fasting-group"><span id="lb-fast">ต้องงดน้ำงดอาหารไหม</span><div class="choices" id="fasting"></div><span class="err" id="err-fasting"></span></div>
+        <label>รายละเอียดอื่น <span class="hint">ไม่บังคับ เช่น ต้องรอรับยา ต้องถือของหนัก</span><input type="text" name="errands" maxlength="500"><span class="err" id="err-errands"></span></label>
+        <label class="check"><input type="checkbox" name="second_person"><span>ไปด้วยกัน 2 ท่าน (เช่น คุณพ่อและคุณแม่) <span class="hint" id="second-hint"></span></span></label>
+        <div class="label" role="group" aria-labelledby="lb-pkg"><span id="lb-pkg">แพ็กเกจ</span><div class="pkg" id="packages"></div><span class="err" id="err-package_key"></span></div>
+        <div class="label" role="group" aria-labelledby="lb-tr"><span id="lb-tr">การเดินทาง</span><div class="choices" id="transport"></div><span class="err" id="err-transport_mode"></span></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>ความยินยอม</legend>
+        <label class="check"><input type="checkbox" name="consent_terms"><span>ฉันอ่านและยอมรับ <a href="/terms.html" target="_blank" rel="noopener">เงื่อนไขบริการ</a> รวมถึงนโยบายยกเลิก</span></label>
+        <span class="err" id="err-consent_terms"></span>
+        <label class="check"><input type="checkbox" name="consent_health"><span>ยินยอมให้ไปด้วยกันเก็บและใช้ข้อมูลสุขภาพของผู้สูงอายุที่กรอกไว้ เพื่อจัดผู้ช่วยและดูแลความปลอดภัยในนัดนี้เท่านั้น ข้อมูลนี้เห็นเฉพาะเจ้าของบริการและผู้ช่วยที่ไปด้วย ถอนความยินยอมได้ทุกเมื่อ อ่าน <a href="/privacy.html" target="_blank" rel="noopener">นโยบายความเป็นส่วนตัว</a></span></label>
+        <span class="err" id="err-consent_health"></span>
+        <label class="check"><input type="checkbox" name="consent_elder"><span>ผู้สูงอายุทราบและตกลงที่จะไปกับผู้ช่วยแล้ว</span></label>
+        <span class="err" id="err-consent_elder"></span>
+        <label class="check"><input type="checkbox" name="consent_photo"><span>ไม่บังคับ: อนุญาตให้ใช้รูปที่ไม่เห็นหน้าผู้สูงอายุในโซเชียลของไปด้วยกัน</span></label>
+        <label>รู้จักเราจากไหน <span class="hint">ไม่บังคับ</span><select name="heard_from"><option value="">ไม่ระบุ</option></select></label>
+      </fieldset>
+
+      <div class="estimate" aria-live="polite">
+        <div><span class="small muted">ราคาประมาณ</span><br><b id="est-total">-</b> <span class="small muted">บาท</span></div>
+        <p class="small muted" id="est-note" style="flex:1 1 220px">เลือกแพ็กเกจเพื่อดูราคา</p>
+      </div>
+      <div id="form-error" class="alert hidden" role="alert"></div>
+      <button class="btn" type="submit" id="submit">ส่งคำขอจอง</button>
+      <p class="small muted">ส่งแล้วยังไม่ต้องจ่ายเงิน เราจะทักกลับทาง LINE เพื่อยืนยันคิวก่อน</p>
+    </form>
+  </div>
+
+  <section id="done" class="done-panel hidden" aria-live="polite" tabindex="-1">
+    <span class="eyebrow">ส่งคำขอแล้ว</span>
+    <h1>ขอบคุณค่ะ เราได้รับคำขอจองแล้ว</h1>
+    <div class="card stack">
+      <p class="muted">รหัสการจอง</p>
+      <p class="code" id="done-code"></p>
+      <dl class="summary" id="done-summary"></dl>
+    </div>
+    <p class="ok" id="done-confirm"></p>
+    <div class="card">
+      <h2>ขั้นตอนต่อไป</h2>
+      <ol class="next">
+        <li>เพิ่มเพื่อน LINE ของไปด้วยกัน แล้วพิมพ์รหัสการจองส่งมา</li>
+        <li>เราส่งชื่อผู้ช่วย ราคา และ QR พร้อมเพย์ให้ ชำระภายใน 24 ชั่วโมงเพื่อยืนยันคิว</li>
+        <li>คืนก่อนนัด ผู้ช่วยโทรแนะนำตัวและเตือนเอกสารที่ต้องเตรียม</li>
+        <li>วันนัด ผู้ช่วยไปรับถึงบ้าน อัปเดตทาง LINE และส่งสรุปหลังจบนัด</li>
+      </ol>
+    </div>
+    <div class="row">
+      <a class="btn" id="done-line" href="https://line.me/R/ti/p/@paiduaygan" target="_blank" rel="noopener">เพิ่มเพื่อน LINE</a>
+      <a class="btn ghost" href="/">กลับหน้าแรก</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p>ไปด้วยกัน · <a href="/terms.html">เงื่อนไขบริการ</a> · <a href="/privacy.html">นโยบายความเป็นส่วนตัว</a></p>
+    <p>บริการนี้ไม่ใช่บริการทางการแพทย์หรือการพยาบาล กรณีฉุกเฉินโทร 1669</p>
+  </div>
+</footer>
+<script type="module" src="/assets/book.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+# Copy to .dev.vars for local development (never commit .dev.vars).
+ADMIN_PASSWORD=change-me-local
+SESSION_SECRET=replace-with-at-least-32-random-characters-xxxxxxxx
+# Optional: LINE Messaging API push to the owner when a booking arrives
+# LINE_CHANNEL_TOKEN=
+# LINE_OWNER_USER_ID=
+# Optional: public booking rate limit per IP per hour (default 5)
+# BOOKING_RATE_LIMIT=5

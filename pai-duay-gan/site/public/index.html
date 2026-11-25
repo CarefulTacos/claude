@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ไปด้วยกัน</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="ผู้ช่วยไปรับคุณพ่อคุณแม่ถึงบ้าน พาไปหาหมอ ตรวจสุขภาพ หรือทำธุระ อยู่ด้วยตลอดนัด แล้วส่งกลับถึงบ้าน ในกรุงเทพฯ">
+<meta name="description" content="ผู้ช่วยไปรับคุณพ่อคุณแม่ถึงบ้าน พาไปทุกธุระ หาหมอ ธนาคาร ราชการ ซื้อของ ทำบุญ งานครอบครัว อยู่ด้วยตลอด แล้วส่งกลับถึงบ้าน ในกรุงเทพฯ">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
@@ -80,6 +80,10 @@ nav a:hover{color:var(--ink)}
 .steps li::before{content:counter(s);font-family:var(--f-display);font-weight:700;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--jade-soft);color:var(--jade)}
 .steps p{color:var(--muted);font-size:.95rem}
 
+/* purposes */
+.purposes{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.purposes div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:4px;align-content:start;min-width:0}
+.purposes p{color:var(--muted);font-size:.95rem}
 /* scope */
 .scope{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
 .scope > div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;min-width:0}
@@ -125,9 +129,10 @@ footer .wrap{display:grid;gap:6px}
   .steps{grid-template-columns:1fr 1fr}
   .prices,.trust{grid-template-columns:1fr}
   .scope{grid-template-columns:1fr}
+  .purposes{grid-template-columns:1fr 1fr}
   nav{display:none}
 }
-@media (max-width:460px){ .steps{grid-template-columns:1fr} }
+@media (max-width:460px){ .steps,.purposes{grid-template-columns:1fr} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -141,10 +146,11 @@ footer .wrap{display:grid;gap:6px}
     </a>
     <nav aria-label="เมนู">
       <a href="#how">ขั้นตอน</a>
+      <a href="#purposes">ธุระที่ไปได้</a>
       <a href="#scope">ผู้ช่วยทำอะไร</a>
       <a href="#price">ราคา</a>
       <a href="#faq">คำถาม</a>
-      <a href="#book">จอง</a>
+      <a href="book.html">จอง</a>
     </nav>
   </div>
 </header>
@@ -153,11 +159,11 @@ footer .wrap{display:grid;gap:6px}
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
-        <span class="eyebrow">บริการผู้ช่วยพาไปหาหมอ ในกรุงเทพฯ</span>
+        <span class="eyebrow">ผู้ช่วยพาคุณพ่อคุณแม่ไปทุกธุระ ในกรุงเทพฯ</span>
         <h1><span class="nw">วันที่คุณไปเองไม่ได้</span> <span class="nw">เราไปรับคุณพ่อคุณแม่</span> <span class="nw">ถึงบ้าน</span></h1>
-        <p class="lead">ผู้ช่วยของเราไปรับถึงหน้าบ้าน พาไปโรงพยาบาล ตรวจสุขภาพ หรือทำธุระ อยู่ด้วยทุกขั้นตอน แล้วพากลับมาส่งถึงบ้าน คุณติดตามได้ทาง LINE ตลอดนัด และได้สรุปคำหมอหลังจบนัด</p>
+        <p class="lead">หาหมอ ธนาคาร ติดต่อราชการ ซื้อของ ทำบุญ หรือไปงานครอบครัว ในวันที่คุณติดงาน ผู้ช่วยของเราไปรับถึงหน้าบ้าน อยู่ด้วยทุกขั้นตอน แล้วพากลับมาส่งถึงบ้าน คุณติดตามได้ทาง LINE ตลอดทาง</p>
         <div class="actions">
-          <a class="btn" href="#book">จองผ่าน LINE</a>
+          <a class="btn" href="book.html">จองออนไลน์</a>
           <a class="btn ghost" href="#price">ดูราคา</a>
         </div>
         <div class="promise"><span>รับ-ส่งถึงบ้าน</span><span>อยู่ด้วยตลอดนัด</span><span>อัปเดตทาง LINE</span></div>
@@ -182,11 +188,30 @@ footer .wrap{display:grid;gap:6px}
       <span class="eyebrow">ขั้นตอน</span>
       <h2>จองล่วงหน้า 2 วัน ที่เหลือเราดูแล</h2>
       <ol class="steps">
-        <li><h3>บอกนัดทาง LINE</h3><p>กรอกแบบฟอร์มสั้น ๆ ที่อยู่ โรงพยาบาล เวลานัด และข้อมูลสุขภาพที่ผู้ช่วยควรรู้</p></li>
+        <li><h3>จองออนไลน์</h3><p>กรอกแบบฟอร์มสั้น ๆ ธุระที่จะไป ที่อยู่ ปลายทาง เวลา และข้อมูลที่ผู้ช่วยควรรู้ หรือทักทาง LINE</p></li>
         <li><h3>ยืนยันและชำระเงิน</h3><p>เราส่งชื่อผู้ช่วย ราคา และ QR พร้อมเพย์ ชำระภายใน 24 ชั่วโมงเพื่อยืนยันคิว</p></li>
-        <li><h3>ผู้ช่วยโทรแนะนำตัว</h3><p>คืนก่อนนัด ผู้ช่วยโทรคุยกับคุณพ่อคุณแม่ และเตือนเอกสารที่ต้องเตรียม</p></li>
-        <li><h3>ไปด้วยกันทั้งวัน</h3><p>รับถึงบ้าน อยู่ด้วยตลอดนัด อัปเดตทาง LINE ส่งกลับถึงบ้าน และส่งสรุปคำหมอ</p></li>
+        <li><h3>ผู้ช่วยโทรแนะนำตัว</h3><p>คืนก่อนวันนัด ผู้ช่วยโทรคุยกับคุณพ่อคุณแม่ และเตือนของที่ต้องเตรียม</p></li>
+        <li><h3>ไปด้วยกันทั้งวัน</h3><p>รับถึงบ้าน อยู่ด้วยตลอด อัปเดตทาง LINE ส่งกลับถึงบ้าน และส่งสรุปให้คุณ</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section id="purposes">
+    <div class="wrap">
+      <span class="eyebrow">ไปธุระอะไรได้บ้าง</span>
+      <h2>ไม่ใช่แค่ไปหาหมอ</h2>
+      <div class="purposes">
+        <div><h3>หาหมอ ตรวจสุขภาพ</h3><p>นัดติดตามโรค ทำฟัน กายภาพ ตรวจตา</p></div>
+        <div><h3>ธนาคาร จ่ายบิล</h3><p>ปรับสมุด เปลี่ยนบัตร ไปรษณีย์</p></div>
+        <div><h3>ติดต่อราชการ</h3><p>ทำบัตรประชาชน เบี้ยผู้สูงอายุ พาสปอร์ต</p></div>
+        <div><h3>ซื้อของ</h3><p>ตลาด ห้าง ของขวัญหลาน</p></div>
+        <div><h3>ทำผม ทำเล็บ</h3><p>ร้านประจำ นวดเท้า สปา</p></div>
+        <div><h3>ทำบุญ ศาสนกิจ</h3><p>วัด โบสถ์ มัสยิด ไปสุสาน</p></div>
+        <div><h3>งานครอบครัว</h3><p>งานแต่ง งานบวช งานศพ แทนลูกที่ติดงาน</p></div>
+        <div><h3>เยี่ยมเพื่อน เดินเล่น</h3><p>กินข้าวกับเพื่อนเก่า คาเฟ่ สวนสาธารณะ</p></div>
+        <div><h3>สนามบิน สถานีรถ</h3><p>ส่งขึ้นเครื่อง รับจากต่างจังหวัด</p></div>
+      </div>
+      <p class="fit">ไป 2 ท่านพร้อมกัน (เช่น คุณพ่อและคุณแม่) บวก 30% · หลายจุดในวันเดียวได้ไม่เกิน 3 จุด</p>
     </div>
   </section>
 
@@ -244,7 +269,7 @@ footer .wrap{display:grid;gap:6px}
         </div>
       </div>
       <div class="extras">
-        <p>เกินเวลา 200 บาทต่อ 30 นาที · เริ่มก่อน 06:30 บวก 200 บาท · เขตชานเมือง เช่น หนองจอก บางขุนเทียน บวก 200 บาท</p>
+        <p>เกินเวลา 200 บาทต่อ 30 นาที · เริ่มก่อน 06:30 หรือรับหลัง 18:00 บวก 200 บาท · เขตชานเมือง เช่น หนองจอก บางขุนเทียน บวก 200 บาท</p>
         <p>ค่าแท็กซี่หรือรถจากแอประหว่างบ้านกับโรงพยาบาล ครอบครัวจ่ายตามใบเสร็จจริง หรือใช้รถของครอบครัวที่ครอบครัวขับเอง</p>
         <p>บัตร 5 ครั้ง (ครึ่งวัน) 6,990 บาท ใช้ภายใน 6 เดือน สำหรับผู้ที่มีนัดประจำ</p>
         <p>ยกเลิกก่อนนัดเกิน 24 ชั่วโมง คืนเงินเต็มหรือเลื่อนฟรี · ภายใน 24 ชั่วโมง คืน 50%</p>
@@ -275,15 +300,17 @@ footer .wrap{display:grid;gap:6px}
         <details><summary>ถ้าหมอนัดช้ากว่าที่คิด</summary><p>ผู้ช่วยจะแจ้งทาง LINE ก่อนเกินเวลา ค่าเกินเวลาคิด 200 บาทต่อ 30 นาที ชำระหลังจบนัดพร้อมค่ารถ</p></details>
         <details><summary>ระหว่างทางเกิดเหตุฉุกเฉินทำอย่างไร</summary><p>ผู้ช่วยโทร 1669 ก่อนทันที แล้วโทรหาเบอร์ฉุกเฉินของครอบครัว จากนั้นแจ้งเจ้าของบริการ ผู้ช่วยไม่ต้องรออนุญาตในการขอความช่วยเหลือทางการแพทย์</p></details>
         <details><summary>ข้อมูลสุขภาพของคุณพ่อคุณแม่ปลอดภัยไหม</summary><p>เราขอเฉพาะข้อมูลที่ผู้ช่วยจำเป็นต้องรู้ ขอความยินยอมก่อนเก็บ ใช้เพื่อนัดนั้นเท่านั้น และไม่โพสต์รูปหรือเรื่องของผู้สูงอายุโดยไม่ได้รับอนุญาต</p></details>
-        <details><summary>ให้บริการพื้นที่ไหน</summary><p>ตอนนี้รับที่อยู่ในกรุงเทพฯ และโรงพยาบาลในกรุงเทพฯ ปริมณฑลจะเปิดในระยะถัดไป</p></details>
+        <details><summary>พาไปธุระที่ไม่ใช่โรงพยาบาลได้ไหม</summary><p>ได้ เช่น ธนาคาร ราชการ ซื้อของ ทำบุญ งานครอบครัว เยี่ยมเพื่อน หรือส่งสนามบิน ราคาคิดตามเวลาเหมือนกัน ผู้ช่วยไม่ดื่มแอลกอฮอล์ ไม่กดรหัสหรือทำธุรกรรมแทน และจะแจ้งคุณทันทีถ้าคุณพ่อคุณแม่จะโอนเงินก้อนใหญ่หรือเซ็นเอกสารสำคัญ</p></details>
+        <details><summary>ให้บริการพื้นที่ไหน</summary><p>ตอนนี้รับที่อยู่และปลายทางในกรุงเทพฯ รวมสนามบินสุวรรณภูมิและดอนเมือง ปริมณฑลจะเปิดในระยะถัดไป</p></details>
       </div>
     </div>
   </section>
 
   <section class="cta" id="book">
     <div class="wrap">
-      <h2>จองนัดแรกทาง LINE</h2>
-      <p class="lead">เพิ่มเพื่อนแล้วกด "จองเลย" ในเมนู ตอบกลับก่อน 08:30 และหลัง 18:00 ทุกวัน</p>
+      <h2>จองนัดแรก</h2>
+      <p class="lead">จองออนไลน์ได้ตลอด 24 ชั่วโมง หรือทักทาง LINE เราตอบกลับก่อน 08:30 และหลัง 18:00 ทุกวัน</p>
+      <a class="btn" style="background:var(--surface);color:var(--jade)" href="book.html">จองออนไลน์</a>
       <div class="lineid">
         <span>LINE ID</span><code id="line-id">@paiduaygan</code>
         <button type="button" id="copy-line">คัดลอก</button>
@@ -295,7 +322,7 @@ footer .wrap{display:grid;gap:6px}
 
 <footer>
   <div class="wrap">
-    <p>ไปด้วยกัน · บริการผู้ช่วยพาผู้สูงอายุไปพบแพทย์และทำธุระ ในกรุงเทพฯ</p>
+    <p>ไปด้วยกัน · ผู้ช่วยพาผู้สูงอายุไปทุกธุระ ในกรุงเทพฯ</p>
     <p><a href="terms.html">เงื่อนไขบริการ</a> · <a href="privacy.html">นโยบายความเป็นส่วนตัว</a></p>
     <p>บริการนี้ไม่ใช่บริการทางการแพทย์หรือการพยาบาล กรณีฉุกเฉินโทร 1669</p>
   </div>
